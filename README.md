@@ -1,196 +1,80 @@
-# Deterministic 3SUM: refined exponent 1.9202796
+# Deterministic 3SUM: exponent 1.920279461
 
-This repository refines the numerical certificates in the published ternary
-3SUM formalization to export the exact rational target
-**4800699/2500000 = 1.9202796**, below the predecessor's **1.9203** bound.
-The construction, probability profile, machine model, and original formalization
-are inherited. The change tightens logarithm and entropy estimates and the
-strict margins in the existing runtime proof.
+This fork of [JoshuaQFEX/3sum-bound](https://github.com/JoshuaQFEX/3sum-bound)
+exports the exact rational target **1920279461/1000000000 = 1.920279461**.
+The predecessor exported 4800699/2500000 = 1.9202796.
+
+**Authorship.** Claude Opus 5.5 (Anthropic) wrote this refinement. Hrishik Sai
+Bojnal ([fringewidth](https://github.com/fringewidth)) published it.
 
 The entry point in [Submission.lean](Submission.lean) is:
 
 ```lean
 theorem Race.bound :
-    EndStatement.ThreeSum.SolvedInTime ((4800699 : Rat) / 2500000) := by
-  exact ThreeSum.solvedInTime_4800699_2500000
+    EndStatement.ThreeSum.SolvedInTime ((1920279461 : Rat) / 1000000000) := by
+  exact ThreeSum.solvedInTime_1920279461_1000000000
 ```
-
-**Verified: the complete 1,198-module Lean source build and full-source axiom
-audit passed in GitHub Actions.** The audit checked **43,758 submitted declarations**
-and permits only `propext`, `Classical.choice`, and `Quot.sound`; the exported
-`Race.bound` uses exactly those axioms. The independent exact-arithmetic check
-also passed on the same source snapshot.
-
-The [GitHub Actions run](https://github.com/JoshuaQFEX/3sum-bound/actions/runs/39423606022) checked
-[source revision `e591fc694811`](https://github.com/JoshuaQFEX/3sum-bound/commit/e591fc6948110172bf4c94be9e29e375ece0a8a5).
-The published proof sources and pinned inputs match that revision exactly.
-The [CI observation](verification/github-actions-39423606022.json) records the
-run identity, successful outcomes, and the downloaded artifact digest check.
-
-The [verification summary](verification.json), [build receipt](verification/receipts/lean-1.9202796-20261020/build/results.json),
-and [axiom-audit receipt](verification/receipts/lean-1.9202796-20261020/audit/results.json) record the checked source hashes,
-toolchain, logs, and actual results. The repository does not claim official
-Big O Speedrun acceptance or independent Nanoda verification for this revision.
-
-## Result and scope
-
-The [benchmark statement](Submission/EndStatement.lean) asks whether three
-distinct input positions have values summing to zero. Equal values at different
-positions are allowed. For each fixed polynomial magnitude bound on the input
-integers, the theorem supplies a single finite deterministic word-RAM program,
-independent of input size and admissible word width, with the required
-correctness and asymptotic running-time bound. The conclusion is
-`O(n^1.9202796)` in that model.
-
-This is an asymptotic refinement. It does not provide a practical crossover
-size or a measured implementation speedup. The exponent decreases by exactly
-0.0000204 from 1.9203.
-
-The full proof is in
-[TernaryFinalSolver.lean](Submission/ThreeSum/TernaryFinalSolver.lean).
-The [proof note](docs/three_sum_bound_note.pdf) ([LaTeX source](docs/three_sum_bound_note.tex))
-explains the exact inequalities,
-the retained runtime margins, and the scope of the result. The
-[numerical certificate](refinement/rational_certificate_refined.json) records
-exact rational endpoints and positive residuals.
 
 ## What changes
 
-The source starts at
-[`fringewidth/three-sum-lean`, commit `4a4a98e6eca4fc16817f0d2074026fdaece52efd`](https://github.com/fringewidth/three-sum-lean/tree/4a4a98e6eca4fc16817f0d2074026fdaece52efd).
-Eleven Lean files change; the complete diff is
-[target_19202796.patch](refinement/target_19202796.patch), with before-and-after
-hashes in the [change manifest](refinement/candidate_refined_manifest.json).
+The construction, the entropy ledger, the logarithm intervals and the principal
+cost certificate 1.92027946 come from Joshua Wharton's revision unchanged. The
+largest ledger term stays at `156432807976/81463563795`, about 1.9202794561.
+This fork only shrinks the strict margins of the runtime chain above the
+certificate.
 
-The logarithm estimates use 16 rational series terms with the exact remainder
-available from Mathlib's `Real.sum_range_sub_log_div_le`. They imply these
-inclusive entropy intervals:
-
-| Quantity in `TernaryParameters` | Lower endpoint | Upper endpoint |
+| Stage | Predecessor | This fork |
 |---|---:|---:|
-| `Hpi` | 0.81463563795 | 0.81463563796 |
-| `Halpha` | 0.51142981001 | 0.51142981003 |
-| `partitionEntropy` | 0.20511813944 | 0.20511813945 |
-| `bankEntropy` | 0.78216403986 | 0.78216403988 |
-| `queryEntropy` | 0.07008744368 | 0.07008744369 |
+| Principal cost certificate | 1.92027946 | 1.92027946 |
+| Fixed block threshold `K` | `10^8` | `10^11` |
+| Finite-block certificate | 1.92027957 | 1.9202794602 |
+| Frontend budget | 1.92027958 | 1.9202794604 |
+| Executed colored solver | 1.92027959 | 1.9202794606 |
+| Micro allowance bound and final gap | `10^-8` | `10^-10` |
+| Exported benchmark target | 1.9202796 | 1.920279461 |
 
-The largest certified principal cost is the bank term, bounded above by
-`156432807976/81463563795`, which is strictly below 1.92027946. The proof then
-uses the following successive exponents:
+With `K >= 10^11`, the finite-block terms `8/K` and `10/K` are at most
+`10^-10`, below the first gap of `2 * 10^-10`. The allowance `1/(100 K^2)` is at
+most `10^-24`. The threshold `K` is chosen once by `Classical.choose`, so no
+computation depends on its size.
 
-| Stage | Exact exponent |
-|---|---:|
-| Principal cost certificate | 1.92027946 |
-| Finite-block certificate | 1.92027957 |
-| Frontend budget | 1.92027958 |
-| Executed colored solver | 1.92027959 |
-| Exported benchmark target | 1.92027960 |
-
-The existing choice `K >= 10^8` gives `10/K <= 10^-7`, strictly smaller than
-the first gap of `1.1 * 10^-7`. The separate allowance `1/(100 K^2)` is at
-most `10^-18`, below the later `10^-8` gaps. The final strict gap absorbs the
-arbitrarily small positive slack permitted by the existing `PowerBound`
-runtime statement.
-
-## Reproduction
-
-Use **Lean `leanprover/lean4:v4.33.1`** and **Mathlib commit
-`0df444a360eaa60ab8c11dca51a86af692955474`**, as recorded in the unchanged
-`lean-toolchain`, `lakefile.toml`, and `lake-manifest.json`. Python 3 is required
-for the verification helpers; the rational checker uses only the standard
-library.
-
-Full compilation is memory intensive. The included CI workflow targets a
-public GitHub `ubuntu-24.04` runner with 16 GB RAM and four compiler workers.
-An 8 GiB local environment exhausted memory on an inherited module even with
-one worker. Use a larger machine or the included workflow to reproduce the
-complete check.
-
-Run the following commands from the repository root after installing the
-pinned Lean toolchain:
+The diff touches 16 Lean files and the runtime margins of
+[rational_certificate_refined.json](refinement/rational_certificate_refined.json).
+Each change is a constant in a margin lemma, a `K` hypothesis or a target
+literal. The exact-arithmetic checker passes:
 
 ```bash
-python3 - <<'PY'
-from pathlib import Path
-import subprocess
-roots = Path('scripts/mathlib-cache-roots.txt').read_text().split()
-subprocess.run(['lake', 'exe', 'cache', 'get', *roots], check=True)
-PY
-
 python3 refinement/verify_certificate.py \
   --certificate refinement/rational_certificate_refined.json \
   --parameters Submission/ThreeSum/TernaryParameters.lean \
   --runtime-root .
-
-python3 refinement/build_parallel.py --aggregate --threads 4
-python3 scripts/audit_axioms.py
 ```
 
-The exact-arithmetic checker reads the actual Lean declarations and separately
-checks 13 direct logarithm enclosures, nine normalized-log identities and
-bounds, five entropy intervals, all six principal costs, the cross-multiplication
-residuals, and the runtime margin chain. **It does not check the full Lean
-proof.**
+## Verification
 
-The full-build helper checks every submitted module against the explicit
-source plan, records input hashes, and rejects source changes during checking.
-The audit then examines all submitted declarations, rejects submitted axioms,
-and permits only `propext`, `Classical.choice`, and `Quot.sound` as transitive
-axioms. Both helpers write fresh local records under `verification/builds/`.
-Full Lean checking and an official hosted verification are separate checks.
+The full 1,198-module build and axiom audit run in
+[.github/workflows/verify.yml](.github/workflows/verify.yml), unchanged from the
+predecessor. [Run 39454903915](https://github.com/fringewidth/3sum-bound/actions/runs/39454903915)
+on commit `6a0740d542fae76b25736de4563d22108d2ec21b` passed the certificate
+check, the full build and the axiom audit.
 
-The [refinement instructions](refinement/README.md) also explain how to
-regenerate the patch and certificates from the pristine upstream revision.
-
-## Files and verification history
-
-| Path | Purpose |
-|---|---|
-| `Submission.lean`, `Submission/` | Complete Lean source and exported theorem |
-| `refinement/` | Exact certificate, independent checker, generation scripts, patch, and changed-file hashes |
-| `docs/three_sum_bound_note.pdf`, `.tex` | Mathematical note for the refined exponent |
-| `verification.json` | Current successful verification summary and source identity |
-| `verification/github-actions-39423606022.json` | CI run identity, outcomes, and archive digest validation |
-| `verification/receipts/lean-1.9202796-20261020/` | Current build, axiom-audit, arithmetic records, and raw logs |
-| `docs/UPSTREAM_README.md` | Predecessor README, preserved verbatim |
-| `scripts/` | Inherited full-source build plan and axiom-audit tools |
-| `.github/workflows/verify.yml` | Pinned CI workflow for the full source build, axiom audit, and retained logs |
-| `verification/receipts/lean-1.921-20261015/` | Preserved historical verification records for the earlier 1.921 source |
-| `docs/upstream-workflows/` | Historical CI workflow, kept as an inactive reference |
-
-The inherited `VERIFICATION.md`, `REPRODUCTION.md`, `SOURCE_MANIFEST.json`, and
-historical receipt directory describe earlier revisions. They are retained for
-provenance; their hashes and success claims do not certify this refinement.
-The current changed-file manifest is under `refinement/`. The successful
-current-source build, audit, and arithmetic records are linked from
-[`verification.json`](verification.json).
-
-The [verification workflow](.github/workflows/verify.yml) runs on source changes
-and supports manual dispatch. It checks all 1,198 planned modules, runs the
-full-source axiom audit, and retains the actual outcomes, receipts, and logs as
-a GitHub Actions artifact. It restores the pinned Mathlib cache and compiles
-the submitted project from source. The predecessor's workflow is preserved
-separately under [`docs/upstream-workflows/`](docs/upstream-workflows/README.md).
+The files `verification.json`, `verification/` and `refinement/target_19202796.patch`
+describe the predecessor revision. They are kept for provenance and do not
+certify this fork.
 
 ## Attribution and license
 
-The accompanying paper, *A sharper exponent for deterministic integer 3SUM*,
-is by **Joshua Wharton**, **QFEX** ([joshua@qfex.com](mailto:joshua@qfex.com)).
-It presents the numerical refinement and accompanying verification in this repository.
+- Joshua Wharton, QFEX: the refined entropy certificates and the 1.9202796
+  revision this fork starts from. His README is kept in
+  [docs/UPSTREAM_README_1.9202796.md](docs/UPSTREAM_README_1.9202796.md).
+- [c0ldzy17](https://github.com/c0ldzy17/three-sum-lean): the algorithmic
+  construction and the original full formalization.
+- The authors credited in [METHOD.md](METHOD.md) and [NOTICE](NOTICE),
+  including Josh Alman and Virginia Vassilevska Williams; Björklund, Husfeldt,
+  Kaski and Koivisto; and Swapnil Jain.
+- Anthropic's formalization supplies the benchmark statement, the word-RAM
+  program logic and the compiler.
 
-The algorithmic construction and original full formalization are due to
-[c0ldzy17](https://github.com/c0ldzy17/three-sum-lean) and the authors credited
-in [METHOD.md](METHOD.md) and [NOTICE](NOTICE). Hrishik Sai Bojnal
-([fringewidth](https://github.com/fringewidth/three-sum-lean)) published the
-preceding exponent-margin refinement to 1.9203. This repository contributes
-the tighter numerical certificates, margin adjustments, and accompanying
-checks described above.
+Copyright notices, [LICENSE](LICENSE) (Apache-2.0) and [NOTICE](NOTICE) are kept.
 
-The inherited work credits Josh Alman and Virginia Vassilevska Williams;
-Björklund, Husfeldt, Kaski, and Koivisto; and Swapnil Jain. The benchmark
-statement, word-RAM program logic, and compiler originate in Anthropic's
-formalization through the source lineage recorded in `NOTICE`. Lean, Mathlib,
-and their dependencies provide the proof infrastructure. Existing copyright
-notices, [LICENSE](LICENSE), and [NOTICE](NOTICE) are preserved.
-
-Problem and leaderboard: [Big O Speedrun — 3SUM](https://bigospeedrun.com/3sum).
+Problem and leaderboard: [Big O Speedrun, 3SUM](https://bigospeedrun.com/3sum).
