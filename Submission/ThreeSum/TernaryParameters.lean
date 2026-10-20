@@ -35,7 +35,7 @@ def queryArg2 : ℝ := (10809005168746209 / 10000000000000000 : ℝ)
 def deficit : ℝ := (268969 / 20000000 : ℝ)
 def mean : ℝ := pi1 + 2 * pi2
 def certificateExponent : ℝ := 96013973 / 50000000
-def targetExponent : ℝ := 4800699 / 2500000
+def targetExponent : ℝ := 1920279461 / 1000000000
 def Hpi : ℝ := (-pi0 * Real.log pi0 - pi1 * Real.log pi1 -
   pi2 * Real.log pi2) / Real.log 2
 def Halpha : ℝ := (-alpha0 * Real.log alpha0 - alpha1 * Real.log alpha1 -
@@ -507,7 +507,7 @@ theorem all_costs_lt_certificate : ∀ t ∈ costLedger, t < certificateExponent
   · exact h5
   · norm_num [certificateExponent]
 
-theorem certificate_margin : targetExponent - certificateExponent = (7 / 50000000 : ℝ) := by
+theorem certificate_margin : targetExponent - certificateExponent = (1 / 1000000000 : ℝ) := by
   norm_num [targetExponent, certificateExponent]
 theorem certificate_lt_target : certificateExponent < targetExponent := by
   norm_num [targetExponent, certificateExponent]

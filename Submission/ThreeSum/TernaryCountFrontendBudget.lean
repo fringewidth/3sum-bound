@@ -460,20 +460,20 @@ theorem all_prefix_time_bound {K k m b C A degree : ℕ}
   change _≤((A : ℝ)*D*(C : ℝ)^3)*R^(degree+4)*E
   exact htotal.trans_eq (by rw [pow_add]; ring)
 
-def frontendExponent : ℝ :=96013979/50000000
+def frontendExponent : ℝ :=4800698651/2500000000
 
-theorem frontend_margin : targetExponent-frontendExponent=(1/50000000 : ℝ) := by
+theorem frontend_margin : targetExponent-frontendExponent=(3/5000000000 : ℝ) := by
   norm_num [targetExponent,frontendExponent]
 
-theorem principal_exponent_lt {K m : ℕ} (hK : 100000000≤K) (c d : ℕ)
+theorem principal_exponent_lt {K m : ℕ} (hK : 100000000000≤K) (c d : ℕ)
     (hgood : GoodBlock K m)
     (hover : overheadCharge (selectedMoment K) c d m<microAllowance K) :
     principalExponent K (selectedMoment K) c d m<frontendExponent := by
   have hmax : max (TernaryOversizeRates.bankCharge K m) (TernaryOversizeRates.queryCharge K m)<softCertificate :=
     max_lt hgood.2.1 hgood.2.2.1
-  have hkr : (100000000 : ℝ)≤K := by exact_mod_cast hK
+  have hkr : (100000000000 : ℝ)≤K := by exact_mod_cast hK
   have hkp : (0 : ℝ)<K := by linarith
-  have hmicro : microAllowance K<(1/100000000 : ℝ) := by
+  have hmicro : microAllowance K<(1/10000000000 : ℝ) := by
     unfold microAllowance
     apply (div_lt_iff₀ (by positivity)).mpr
     nlinarith
@@ -486,7 +486,7 @@ theorem principal_exponent_lt {K m : ℕ} (hK : 100000000≤K) (c d : ℕ)
 /-- Uniform, genuine all-prefix natural time bound for the physical frontend,
 including polynomial channel overhead, strictly below the requested 1.921. -/
 theorem all_prefix_eventually {K m b C A degree : ℕ}
-    (hK : 100000000≤K) (c d : ℕ) (hb : b≤c*(fixedLength m+1)^d)
+    (hK : 100000000000≤K) (c d : ℕ) (hb : b≤c*(fixedLength m+1)^d)
     (hgood : GoodBlock K m)
     (hover : overheadCharge (selectedMoment K) c d m<microAllowance K)
     (f g : ℕ→ℕ→Config) (groups wanted : ℕ→ℕ→ℕ) (channels : ℕ→ℕ)
@@ -516,7 +516,7 @@ theorem all_prefix_eventually {K m b C A degree : ℕ}
 
 /-- The same fixed block satisfies the actual cardinality rates and the
 small repeated-family overhead required above. -/
-theorem exists_fixed_block {K : ℕ} (hK : 100000000≤K) (c d minimum : ℕ) :
+theorem exists_fixed_block {K : ℕ} (hK : 100000000000≤K) (c d minimum : ℕ) :
     ∃ m, minimum≤m ∧ GoodBlock K m ∧
       overheadCharge (selectedMoment K) c d m<microAllowance K ∧
       principalExponent K (selectedMoment K) c d m<frontendExponent := by

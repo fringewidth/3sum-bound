@@ -93,7 +93,7 @@ theorem collision_bound {K m n : ℕ} (hm : 0<m) (hn : 1<n)
 
 /-- All exact paired, collision, preprocessing and principal cost margins
 hold in one fixed block, chosen before inspecting the input. -/
-theorem simultaneous_parameters {K : ℕ} (hK : 100000000≤K)
+theorem simultaneous_parameters {K : ℕ} (hK : 100000000000≤K)
     {κ : ℝ} (hκ : 0≤κ) (c d N : ℕ) :
     ∃ t m : ℕ, 0<t ∧ N≤m ∧ GoodBlock K m ∧
       TernaryOversizeOverhead.overheadCharge (TernaryOversizeOverhead.selectedMoment K) c d m<

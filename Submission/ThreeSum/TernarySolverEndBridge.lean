@@ -11,8 +11,8 @@ open scoped Topology
 set_option maxHeartbeats 1500000
 set_option maxRecDepth 16000
 
-def target : ℚ := 4800699/2500000
-def targetExponent : ℝ := 4800699/2500000
+def target : ℚ := 1920279461/1000000000
+def targetExponent : ℝ := 1920279461/1000000000
 
 theorem target_cast : (target:ℝ)=targetExponent := by norm_num [target,targetExponent]
 
@@ -26,14 +26,14 @@ theorem solvedAt_of_solves {κ : ℕ} {P : Program} {p : ℕ}
     (hs : Solves s3Task P p T need) (hp : PolyNeed need)
     (ht : ∀ᶠ n : ℕ in atTop,
       timeUpTo T n ((n:ℝ)^(κ:ℝ))≤ (n:ℝ)^targetExponent) :
-    ThreeSumApsp.WordRam.SolvedInTimeAt EndStatement.ThreeSum κ (4800699/2500000:ℝ) 0 :=
+    ThreeSumApsp.WordRam.SolvedInTimeAt EndStatement.ThreeSum κ (1920279461/1000000000:ℝ) 0 :=
   TernaryEndBridge.solvedAt_of_solves hs hp ht
 
 theorem solvedAt_of_uniform {κ : ℕ} {P : Program} {p : ℕ}
     {T : ℕ→ ℕ→ ℕ} {need : ℕ→ ℕ→ Need}
     (hs : Solves s3Task P p T need) (hp : PolyNeed need)
     (ht : ∀ᶠ n : ℕ in atTop, ∀ U : ℕ, U≤ n^κ→ (T n U:ℝ)≤ (n:ℝ)^targetExponent) :
-    ThreeSumApsp.WordRam.SolvedInTimeAt EndStatement.ThreeSum κ (4800699/2500000:ℝ) 0 :=
+    ThreeSumApsp.WordRam.SolvedInTimeAt EndStatement.ThreeSum κ (1920279461/1000000000:ℝ) 0 :=
   solvedAt_of_solves hs hp (TernaryEndBridge.timeUpTo_eventually_of_uniform ht)
 
 /-- The final publication theorem needs one real solver and resource/time
@@ -42,8 +42,8 @@ theorem endStatement_of_solvers
     (h : ∀ κ : ℕ, ∃ (P : Program) (p : ℕ) (T : ℕ→ ℕ→ ℕ) (need : ℕ→ ℕ→ Need),
       Solves s3Task P p T need ∧ PolyNeed need ∧
       ∀ᶠ n : ℕ in atTop, timeUpTo T n ((n:ℝ)^(κ:ℝ))≤ (n:ℝ)^targetExponent) :
-    EndStatement.ThreeSum.SolvedInTime (4800699/2500000:Rat) := by
-  apply TernaryEndBridge.endStatement_of_solvers (by norm_num : (0:ℚ)≤ 4800699/2500000)
+    EndStatement.ThreeSum.SolvedInTime (1920279461/1000000000:Rat) := by
+  apply TernaryEndBridge.endStatement_of_solvers (by norm_num : (0:ℚ)≤ 1920279461/1000000000)
   simpa only [Rat.cast_div,Rat.cast_ofNat,targetExponent] using h
 
 theorem powerBound_of_eventually {T : ℕ→ ℕ} {a : ℝ}
@@ -85,7 +85,7 @@ theorem hybrid_solvedAt {P : Program} {p κ cutoff : ℕ}
     {T : ℕ→ ℕ} {need : ℕ→ ℕ→ Need} {a : ℝ}
     (hexec : FastExecution P p κ cutoff T need) (hp : PolyNeed need)
     (ht : PowerBound T a) (ha : 0≤ a) (hmargin : a<targetExponent) :
-    ThreeSumApsp.WordRam.SolvedInTimeAt EndStatement.ThreeSum κ (4800699/2500000:ℝ) 0 :=
+    ThreeSumApsp.WordRam.SolvedInTimeAt EndStatement.ThreeSum κ (1920279461/1000000000:ℝ) 0 :=
   solvedAt_of_solves (hybrid_solves hexec) (hybrid_polyNeed hp κ cutoff)
     (hybrid_timeUpTo ht ha hmargin κ cutoff)
 
@@ -94,7 +94,7 @@ theorem endStatement_of_fast_solvers
       ∃ (P : Program) (p cutoff : ℕ) (T : ℕ→ ℕ) (need : ℕ→ ℕ→ Need) (a : ℝ),
         FastExecution P p κ cutoff T need ∧ PolyNeed need ∧
         PowerBound T a ∧ 0≤ a ∧ a<targetExponent) :
-    EndStatement.ThreeSum.SolvedInTime (4800699/2500000:Rat) := by
+    EndStatement.ThreeSum.SolvedInTime (1920279461/1000000000:Rat) := by
   apply endStatement_of_solvers
   intro κ
   obtain ⟨P,p,cutoff,T,need,a,hexec,hp,ht,ha,hmargin⟩:= h κ

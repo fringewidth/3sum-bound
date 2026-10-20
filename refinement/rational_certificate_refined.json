@@ -115,7 +115,7 @@
     ]
   },
   "certificate": "96013973/50000000",
-  "target": "4800699/2500000",
+  "target": "1920279461/1000000000",
   "ledger_upper": [
     "156432807976/81463563795",
     "1061964464734713058634/553026018855291530485",
@@ -140,17 +140,17 @@
     "175218683098230377/1250000000000000000"
   ],
   "runtime_margins": {
-    "soft": "192027957/100000000",
-    "frontend": "96013979/50000000",
-    "colored": "192027959/100000000",
-    "K_min": 100000000,
-    "micro_max": "1/1000000000000000000",
-    "micro_bound": "1/100000000",
-    "soft_minus_certificate": "11/100000000",
-    "target_minus_certificate": "7/50000000",
-    "target_minus_soft": "3/100000000",
-    "target_minus_frontend": "1/50000000",
-    "target_minus_colored": "1/100000000",
+    "soft": "9601397301/5000000000",
+    "frontend": "4800698651/2500000000",
+    "colored": "9601397303/5000000000",
+    "K_min": 100000000000,
+    "micro_max": "1/1000000000000000000000000",
+    "micro_bound": "1/10000000000",
+    "soft_minus_certificate": "1/5000000000",
+    "target_minus_certificate": "1/1000000000",
+    "target_minus_soft": "1/1250000000",
+    "target_minus_frontend": "3/5000000000",
+    "target_minus_colored": "1/2500000000",
     "largest_ledger_to_certificate_gap": "3179381507/814635637950000000"
   }
 }

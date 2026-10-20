@@ -41,7 +41,7 @@ theorem pairFactor_pos {K m F : ℕ} (hF : 0<F) : 0<9*pairFactor m F K := by
 
 /-- Fixed parameters satisfy the exact integer paired drift, along with
 all preprocessing, collision, and principal-time margins. -/
-theorem exists_parameters {K : ℕ} (hK : 100000000≤K) {κ : ℝ} (hκ : 0≤κ) (c d N : ℕ) :
+theorem exists_parameters {K : ℕ} (hK : 100000000000≤K) {κ : ℝ} (hκ : 0≤κ) (c d N : ℕ) :
     ∃t m : ℕ, 0<t ∧ N≤m ∧ GoodBlock K m ∧
       overheadCharge (selectedMoment K) c d m<microAllowance K ∧
       carryExponent m (2^t) κ<microAllowance K ∧
@@ -123,7 +123,7 @@ def InputGuards (K m radix κ n : ℕ) : Prop :=
 
 /-- A single fixed choice, before any input is inspected, provides every
 paired, original-collision, signed-preprocessing and terminal guard. -/
-theorem simultaneous_cutoff {K : ℕ} (hK : 100000000≤K) (κ c d N : ℕ) :
+theorem simultaneous_cutoff {K : ℕ} (hK : 100000000000≤K) (κ c d N : ℕ) :
     ∃t m n0 : ℕ, 0<t ∧ N≤m ∧ GoodBlock K m ∧
       overheadCharge (selectedMoment K) c d m<microAllowance K ∧
       carryExponent m (2^t) (κ : ℝ)<microAllowance K ∧
