@@ -197,7 +197,7 @@ theorem small_overhead_eventually {K : ℕ} (hK : 0 < K) (c d : ℕ) :
   (overhead_charge_tendsto (selectedMoment_pos hK) c d).eventually
     (gt_mem_nhds (moment_limit_lt_allowance hK))
 
-theorem common_fixed_block {K : ℕ} (hK : 100000000000 ≤ K) (c d N : ℕ) :
+theorem common_fixed_block {K : ℕ} (hK : 10000000000000 ≤ K) (c d N : ℕ) :
     ∃ m : ℕ, N ≤ m ∧ GoodBlock K m ∧
       overheadCharge (selectedMoment K) c d m < microAllowance K := by
   have hk : 0 < K := by omega
@@ -253,11 +253,11 @@ theorem paired_drift_with_slack {K : ℕ} (hK : 100 ≤ K) :
   field_simp [hp.ne']
   nlinarith
 
-theorem final_margin {K : ℕ} (hK : 100000000000 ≤ K) :
+theorem final_margin {K : ℕ} (hK : 10000000000000 ≤ K) :
     softCertificate+microAllowance K < targetExponent := by
-  have hk : (100000000000 : ℝ) ≤ K := by exact_mod_cast hK
+  have hk : (10000000000000 : ℝ) ≤ K := by exact_mod_cast hK
   have hp : (0 : ℝ) < K := by linarith
-  have hδ : microAllowance K < (1/10000000000 : ℝ) := by
+  have hδ : microAllowance K < (1/1000000000000 : ℝ) := by
     unfold microAllowance
     apply (div_lt_iff₀ (by positivity)).mpr
     nlinarith

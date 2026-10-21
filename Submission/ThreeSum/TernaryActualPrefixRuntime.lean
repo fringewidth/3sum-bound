@@ -323,7 +323,7 @@ theorem volume_bundle_bound {K k b m n j : ℕ}
       rw [Real.rpow_add hn0]
       ring
 
-theorem full_exponent_lt {K m : ℕ} (hK : 100000000000≤K) (c d : ℕ)
+theorem full_exponent_lt {K m : ℕ} (hK : 10000000000000≤K) (c d : ℕ)
     (hgood : GoodBlock K m)
     (hover : overheadCharge (selectedMoment K) c d m<microAllowance K) :
     fullExponent K (selectedMoment K) c d m<TernaryCountFrontendBudget.frontendExponent :=by
@@ -332,9 +332,9 @@ theorem full_exponent_lt {K m : ℕ} (hK : 100000000000≤K) (c d : ℕ)
     exact max_lt (by norm_num [softCertificate])
       (max_lt hgood.2.1 (max_lt hgood.2.2.1
         (max_lt hgood.2.2.2.1 (max_lt hgood.2.2.2.2.1 hgood.2.2.2.2.2))))
-  have hkr : (100000000000:ℝ)≤K:=by exact_mod_cast hK
+  have hkr : (10000000000000:ℝ)≤K:=by exact_mod_cast hK
   have hkp : (0:ℝ)<K:=by linarith
-  have hmicro : microAllowance K<(1/10000000000:ℝ):=by
+  have hmicro : microAllowance K<(1/1000000000000:ℝ):=by
     unfold microAllowance
     apply (div_lt_iff₀ (by positivity)).mpr
     nlinarith
