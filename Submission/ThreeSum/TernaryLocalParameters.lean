@@ -7,8 +7,8 @@ namespace ThreeSum.TernaryLocalParameters
 open Finset TernaryJointType TernaryCoverLocal TernaryTypeLowerBound TernaryCoverUniformProjection
 
 def fixedLength (m : ℕ) : ℕ := 100000000*m
-def fixedPi (m : ℕ) : DigitType := ![81204903*m,15860350*m,2934747*m]
-def fixedAlpha (m : ℕ) : DigitType := ![90113327*m,8908424*m,978249*m]
+def fixedPi (m : ℕ) : DigitType := ![81204746*m,15860450*m,2934804*m]
+def fixedAlpha (m : ℕ) : DigitType := ![90113239*m,8908493*m,978268*m]
 
 theorem fixedPi_total (m : ℕ) : fixedPi m 0+fixedPi m 1+fixedPi m 2 = fixedLength m := by
   simp [fixedPi,fixedLength]
@@ -53,10 +53,10 @@ theorem choose_eighth_bound (m k : ℕ) (hk : k ≤ 8*m) :
 in every exact integer instance of the certified rational schedule. -/
 theorem difference_choose_le_partition (m : ℕ) :
     (fixedLength m).choose (fixedPi m 2/3) ≤ 2^(fixedPi m 1)*3^(fixedPi m 2) := by
-  have hk : 978249*m ≤ 8*(12500000*m) := by omega
-  have h := choose_eighth_bound (12500000*m) (978249*m) hk
+  have hk : 978268*m ≤ 8*(12500000*m) := by omega
+  have h := choose_eighth_bound (12500000*m) (978268*m) hk
   have hL : 8*(12500000*m) = fixedLength m := by simp [fixedLength]; omega
-  have hr : 978249*m = fixedPi m 2/3 := by simp [fixedPi]; omega
+  have hr : 978268*m = fixedPi m 2/3 := by simp [fixedPi]; omega
   rw [hL,hr] at h
   calc
     _ ≤ 2^(12500000*m+4*(fixedPi m 2/3)) := h

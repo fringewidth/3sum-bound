@@ -150,20 +150,20 @@ theorem incidence_charge_tendsto {K : ℕ} (hK : 0 < K) :
   · rfl
   · field_simp [Hpi_pos.ne'] <;> ring
 
-def softCertificate : ℝ := 960139728501/500000000000
+def softCertificate : ℝ := 4800698571997281329/2500000000000000000
 def GoodBlock (K m : ℕ) : Prop := 0 < m ∧ bankCharge K m<softCertificate ∧
   queryCharge K m<softCertificate ∧ endpointCharge K m<softCertificate ∧
   histogramCharge K m<softCertificate ∧ incidenceCharge K m<softCertificate
 
-theorem goodBlock_eventually {K : ℕ} (hK : 10000000000000 ≤ K) :
+theorem goodBlock_eventually {K : ℕ} (hK : 100000000000000000000 ≤ K) :
     ∀ᶠ m : ℕ in atTop, GoodBlock K m := by
   have hk : 0 < K := by omega
   have hkR : (0 : ℝ) < K := by exact_mod_cast hk
-  have hkR' : (10000000000000 : ℝ) ≤ K := by exact_mod_cast hK
-  have h8 : 8/(K : ℝ) < (1/500000000000 : ℝ) := (div_lt_iff₀ hkR).mpr (by linarith)
-  have h10 : 10/(K : ℝ) < (1/500000000000 : ℝ) := (div_lt_iff₀ hkR).mpr (by linarith)
+  have hkR' : (100000000000000000000 : ℝ) ≤ K := by exact_mod_cast hK
+  have h8 : 8/(K : ℝ) < (1/5000000000000000000 : ℝ) := (div_lt_iff₀ hkR).mpr (by linarith)
+  have h10 : 10/(K : ℝ) < (1/5000000000000000000 : ℝ) := (div_lt_iff₀ hkR).mpr (by linarith)
   obtain ⟨hB,hQ,hA,hP,hI⟩ := ledger_individual_bounds
-  have he : certificateExponent+(1/500000000000 : ℝ)=softCertificate := by norm_num [certificateExponent,softCertificate]
+  have he : certificateExponent+(1/5000000000000000000 : ℝ)=softCertificate := by norm_num [certificateExponent,softCertificate]
   have hb : 2*bankEntropy/Hpi+8/K<softCertificate := by linarith
   have hq : 2-partitionEntropy/Hpi+2*queryEntropy/Hpi+10/K<softCertificate := by linarith
   have ha : 2*Halpha/Hpi+8/K<softCertificate := by linarith
@@ -177,7 +177,7 @@ theorem goodBlock_eventually {K : ℕ} (hK : 10000000000000 ≤ K) :
     (incidence_charge_tendsto hk).eventually (gt_mem_nhds hi)] with m hm hB hQ hA hP hI
   exact ⟨hm,hB,hQ,hA,hP,hI⟩
 
-theorem soft_certificate_margin : targetExponent-softCertificate=(1/125000000000 : ℝ) := by
+theorem soft_certificate_margin : targetExponent-softCertificate=(1/1250000000000000000 : ℝ) := by
   norm_num [targetExponent,softCertificate]
 
 end ThreeSum.TernaryOversizeRates

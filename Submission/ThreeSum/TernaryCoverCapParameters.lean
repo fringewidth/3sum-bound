@@ -78,9 +78,9 @@ theorem sourceCap_threshold (m p : ℕ) (hp : 0 < p) :
   simpa only [Nat.mul_comm] using h
 
 theorem frequencyFactor_gt_one (m : ℕ) : 1 < frequencyFactor m := by
-  have hD : 0 < partitionLoss (7930175*m) (978249*m) := by unfold partitionLoss; positivity
+  have hD : 0 < partitionLoss (7930225*m) (978268*m) := by unfold partitionLoss; positivity
   have hC : 0 < (3 : ℕ)^16 := by positivity
-  have hQ : 0 < (16*partitionLoss (7930175*m) (978249*m))^2 := by positivity
+  have hQ : 0 < (16*partitionLoss (7930225*m) (978268*m))^2 := by positivity
   have h := Nat.mul_le_mul_left 4 (Nat.mul_pos hC hQ)
   have h4 : 4 ≤ frequencyFactor m := by
     simpa only [Nat.succ_eq_add_one, Nat.zero_add, mul_one, frequencyFactor, Nat.mul_assoc] using h

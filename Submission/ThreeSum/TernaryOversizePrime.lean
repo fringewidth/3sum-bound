@@ -133,10 +133,10 @@ theorem inflated_frequency_scale {K : ℕ} (hK : 0 < K) (m : ℕ) :
   have he := TernaryPartitionCount.fixed_edge_mass_lower m
   have hp := nativePrime_upper hK m
   have hs : nativePrime K m^2 ≤
-      (16*TernaryPartitionCount.partitionLoss (7930175*m) (978249*m))*
+      (16*TernaryPartitionCount.partitionLoss (7930225*m) (978268*m))*
         Fintype.card (TernaryCoverGoodMaps.ActualEdge m)*(inflation K m)^2 := by
     change nativePrime K m^2 ≤ 16*(threshold m*(inflation K m)^2) at hp
-    have he' : threshold m ≤ TernaryPartitionCount.partitionLoss (7930175*m) (978249*m)*
+    have he' : threshold m ≤ TernaryPartitionCount.partitionLoss (7930225*m) (978268*m)*
         Fintype.card (TernaryCoverGoodMaps.ActualEdge m) := he
     have hx := Nat.mul_le_mul_right ((inflation K m)^2) (Nat.mul_le_mul_left 16 he')
     exact hp.trans (by simpa only [Nat.mul_assoc] using hx)

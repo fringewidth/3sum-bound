@@ -261,26 +261,26 @@ open TernaryLocalParameters
 
 theorem fixed_edge_mass_lower (m : ℕ) :
     (vertices (fixedLength m) (fixedPi m)).card*(2^(fixedPi m 1)*3^(fixedPi m 2)) ≤
-    partitionLoss (7930175*m) (978249*m)*
+    partitionLoss (7930225*m) (978268*m)*
       Fintype.card (LocalEdge (fixedLength m) (fixedAlpha m) (fixedPi m)) := by
-  have h := edge_mass_lower (81204903*m) (7930175*m) (978249*m)
-  have hL : 81204903*m+2*(7930175*m)+3*(978249*m) = fixedLength m := by
+  have h := edge_mass_lower (81204746*m) (7930225*m) (978268*m)
+  have hL : 81204746*m+2*(7930225*m)+3*(978268*m) = fixedLength m := by
     simp [fixedLength]; omega
-  have hα : alphaType (81204903*m) (7930175*m) (978249*m) = fixedAlpha m := by
+  have hα : alphaType (81204746*m) (7930225*m) (978268*m) = fixedAlpha m := by
     funext d
     fin_cases d <;> simp [alphaType,fixedAlpha] <;> omega
-  have hπ : piType (81204903*m) (7930175*m) (978249*m) = fixedPi m := by
+  have hπ : piType (81204746*m) (7930225*m) (978268*m) = fixedPi m := by
     funext d
     fin_cases d <;> simp [piType,fixedPi] <;> omega
-  have h1 : 2*(7930175*m) = fixedPi m 1 := by simp [fixedPi]; omega
-  have h2 : 3*(978249*m) = fixedPi m 2 := by simp [fixedPi]; omega
+  have h1 : 2*(7930225*m) = fixedPi m 1 := by simp [fixedPi]; omega
+  have h2 : 3*(978268*m) = fixedPi m 2 := by simp [fixedPi]; omega
   rw [hL,hα,hπ,h1,h2] at h
   exact h
 
 theorem fixed_prime_sq_le_poly_edges (m p : ℕ)
     (hP : p^2 ≤ 16*(vertices (fixedLength m) (fixedPi m)).card*
       (2^(fixedPi m 1)*3^(fixedPi m 2))) :
-    p^2 ≤ 16*partitionLoss (7930175*m) (978249*m)*
+    p^2 ≤ 16*partitionLoss (7930225*m) (978268*m)*
       Fintype.card (LocalEdge (fixedLength m) (fixedAlpha m) (fixedPi m)) := by
   exact hP.trans (by simpa [Nat.mul_assoc] using Nat.mul_le_mul_left 16 (fixed_edge_mass_lower m))
 

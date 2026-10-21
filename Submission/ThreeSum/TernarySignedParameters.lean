@@ -66,7 +66,7 @@ theorem power_two_base {κ δ : ℝ} (hκ : 0≤κ) (hδ : 0<δ) :
 /-- The base is fixed first. The block is then chosen far enough out for
 all principal charges, repeated local losses, padding, and original-row
 integer-minor preservation to hold simultaneously. -/
-theorem simultaneous_parameters {K : ℕ} (hK : 10000000000000≤K)
+theorem simultaneous_parameters {K : ℕ} (hK : 100000000000000000000≤K)
     {κ : ℝ} (hκ : 0≤κ) (c d N : ℕ) :
     ∃ t m : ℕ, 0<t ∧ N≤m ∧ GoodBlock K m ∧
       overheadCharge (selectedMoment K) c d m<microAllowance K ∧

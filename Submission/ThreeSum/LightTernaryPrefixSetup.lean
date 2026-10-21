@@ -12,7 +12,7 @@ set_option maxHeartbeats 6000000
 set_option maxRecDepth 18000
 
 def N (m j : ℕ) : ℕ := 100000000*(j*m)
-def T (m j : ℕ) : ℕ := 20384999*(j*m)
+def T (m j : ℕ) : ℕ := 20385197*(j*m)
 def nb (m j : ℕ) : ℕ := (codes (N m j) (T m j)).length
 
 def header (m j F bank work : ℕ) : List ℤ :=
@@ -21,7 +21,7 @@ def header (m j F bank work : ℕ) : List ℤ :=
 def body (pPower pSetup : ℕ) : Stmt :=
   .set 6 (v 0 *' v 1) ;;
   .set 7 (k 100000000 *' v 6) ;;
-  .set 8 (k 20384999 *' v 6) ;;
+  .set 8 (k 20385197 *' v 6) ;;
   .set 9 (k 2 *' v 7) ;;
   .call pPower [v 2,v 0] 10 ;;
   .call pSetup [v 7,v 8,v 4,v 5] 11 ;;
@@ -77,7 +77,7 @@ theorem meets {pMain pPower pSetup pPowers pEnum m j F dst bank work d : ℕ}
   have hM:= hbudget m (by unfold word; generalize 4^(N m j+1)=q; omega)
   have hF:= hbudget F (by unfold word; generalize 4^(N m j+1)=q; omega)
   have hconstant:= hbudget 100000000 (by unfold word; generalize 4^(N m j+1)=q; omega)
-  have hconstantT : (20384999:ℤ)≤ lim.word := by omega
+  have hconstantT : (20385197:ℤ)≤ lim.word := by omega
   have hprod : j*m≤ N m j := by unfold N; omega
   have hjm:= hbudget (j*m) (by unfold word; generalize 4^(N m j+1)=q; omega)
   have hcut:= (dimensions m j).2.2
@@ -95,7 +95,7 @@ theorem meets {pMain pPower pSetup pPowers pEnum m j F dst bank work d : ℕ}
   have hNN : (100000000:ℤ)*((j:ℤ)*(m:ℤ))≤ lim.word := by
     have hh:= hbudget (N m j) (by unfold word; generalize 4^(N m j+1)=q; omega)
     simpa [N,mul_assoc] using hh
-  have hTT : (20384999:ℤ)*((j:ℤ)*(m:ℤ))≤ lim.word := by
+  have hTT : (20385197:ℤ)*((j:ℤ)*(m:ℤ))≤ lim.word := by
     simpa [T,mul_assoc] using hT
   have hNP : LightNatPower.time j+LightTernaryEnumerationSetup.time (N m j) (T m j)+500=time m j:= rfl
   apply Meets.of_body hmain

@@ -70,7 +70,7 @@ theorem envelope_bound (maps : Fin F→Weight m p) (τ cap M b K H drift scale n
   have hN : LightTernaryPrefixSetup.N m (j+1)=fixedLength m*(j+1) := by
     unfold LightTernaryPrefixSetup.N fixedLength
     ring
-  have hT : LightTernaryPrefixSetup.T m (j+1)=20384999*m*(j+1) := by
+  have hT : LightTernaryPrefixSetup.T m (j+1)=20385197*m*(j+1) := by
     unfold LightTernaryPrefixSetup.T
     ring
   have hfactor : 2^(fixedAlpha m 2*(j+1))=(2^fixedAlpha m 2)^(j+1) := by rw [pow_mul]
@@ -78,7 +78,7 @@ theorem envelope_bound (maps : Fin F→Weight m p) (τ cap M b K H drift scale n
     (Nat.sub_le _ _).trans (Nat.sub_le _ _)
   have hc := prefix_cells maps τ cap M b K H drift scale n U (j+1)
   let parts : List ℕ := [j+1,m,p,p^(j+1),fixedAlpha m 2,alphaRank m,2*(4^fixedLength m),
-    LightTernaryDimensions.J M b n U,fixedLength m*(j+1),20384999*m*(j+1),
+    LightTernaryDimensions.J M b n U,fixedLength m*(j+1),20385197*m*(j+1),
     2*(fixedLength m*(j+1)),F^(j+1),(4^fixedLength m)^(j+1),p^(j+1)*p,
     fixedAlpha m 2*(j+1),(2^fixedAlpha m 2)^(j+1),alphaRank m*(j+1),
     (fixedLength m*(j+1)+1)*(4^fixedLength m)^(j+1),

@@ -54,14 +54,14 @@ theorem typeCount_bits_tendsto {N r1 r2 : ℕ} (hN : 0 < N)
     · exact_mod_cast (Nat.choose_pos (Nat.mul_le_mul_right m (show r1 ≤ N-r2 by omega))).ne'
   · rfl
 
-theorem output_splitBits : splitBits 100000000 15860350 2934747 = TernaryParameters.Hpi := by
+theorem output_splitBits : splitBits 100000000 15860450 2934804 = TernaryParameters.Hpi := by
   have h := entropy_split TernaryParameters.pi_positive.1 TernaryParameters.pi_positive.2.1
     TernaryParameters.pi_positive.2.2 TernaryParameters.pi_total
   unfold splitBits ThreeSum.Parameters.entropy TernaryParameters.Hpi
   norm_num [TernaryParameters.pi0,TernaryParameters.pi1,TernaryParameters.pi2] at h ⊢
   linear_combination h / Real.log 2
 
-theorem endpoint_splitBits : splitBits 100000000 8908424 978249 = TernaryParameters.Halpha := by
+theorem endpoint_splitBits : splitBits 100000000 8908493 978268 = TernaryParameters.Halpha := by
   have h := entropy_split TernaryParameters.alpha_positive.1 TernaryParameters.alpha_positive.2.1
     TernaryParameters.alpha_positive.2.2 TernaryParameters.alpha_total
   unfold splitBits ThreeSum.Parameters.entropy TernaryParameters.Halpha
@@ -69,17 +69,17 @@ theorem endpoint_splitBits : splitBits 100000000 8908424 978249 = TernaryParamet
   linear_combination h / Real.log 2
 
 theorem output_formula_rate :
-    Tendsto (fun m : ℕ => Real.log (typeCount 100000000 15860350 2934747 m : ℝ)/
+    Tendsto (fun m : ℕ => Real.log (typeCount 100000000 15860450 2934804 m : ℝ)/
       (((100000000*m : ℕ) : ℝ)*Real.log 2)) atTop (𝓝 TernaryParameters.Hpi) := by
   simpa only [output_splitBits] using
-    (typeCount_bits_tendsto (N := 100000000) (r1 := 15860350) (r2 := 2934747)
+    (typeCount_bits_tendsto (N := 100000000) (r1 := 15860450) (r2 := 2934804)
       (by decide) (by decide) (by decide))
 
 theorem endpoint_formula_rate :
-    Tendsto (fun m : ℕ => Real.log (typeCount 100000000 8908424 978249 m : ℝ)/
+    Tendsto (fun m : ℕ => Real.log (typeCount 100000000 8908493 978268 m : ℝ)/
       (((100000000*m : ℕ) : ℝ)*Real.log 2)) atTop (𝓝 TernaryParameters.Halpha) := by
   simpa only [endpoint_splitBits] using
-    (typeCount_bits_tendsto (N := 100000000) (r1 := 8908424) (r2 := 978249)
+    (typeCount_bits_tendsto (N := 100000000) (r1 := 8908493) (r2 := 978268)
       (by decide) (by decide) (by decide))
 
 theorem fixedAlpha_total (m : ℕ) : fixedAlpha m 0+fixedAlpha m 1+fixedAlpha m 2=fixedLength m := by
@@ -87,20 +87,20 @@ theorem fixedAlpha_total (m : ℕ) : fixedAlpha m 0+fixedAlpha m 1+fixedAlpha m 
   omega
 
 theorem actual_output_count (m : ℕ) :
-    outputSize m=typeCount 100000000 15860350 2934747 m := by
+    outputSize m=typeCount 100000000 15860450 2934804 m := by
   unfold outputSize
   rw [TernaryTypeCardinality.vertices_card_eq_choose (fixedPi m) (fixedPi_total m)]
-  change (100000000*m).choose (2934747*m)*(100000000*m-2934747*m).choose (15860350*m)=
-    (100000000*m).choose (2934747*m)*((100000000-2934747)*m).choose (15860350*m)
+  change (100000000*m).choose (2934804*m)*(100000000*m-2934804*m).choose (15860450*m)=
+    (100000000*m).choose (2934804*m)*((100000000-2934804)*m).choose (15860450*m)
   rw [← Nat.sub_mul]
 
 def endpointSize (m : ℕ) : ℕ := (vertices (fixedLength m) (fixedAlpha m)).card
 theorem actual_endpoint_count (m : ℕ) :
-    endpointSize m=typeCount 100000000 8908424 978249 m := by
+    endpointSize m=typeCount 100000000 8908493 978268 m := by
   unfold endpointSize
   rw [TernaryTypeCardinality.vertices_card_eq_choose (fixedAlpha m) (fixedAlpha_total m)]
-  change (100000000*m).choose (978249*m)*(100000000*m-978249*m).choose (8908424*m)=
-    (100000000*m).choose (978249*m)*((100000000-978249)*m).choose (8908424*m)
+  change (100000000*m).choose (978268*m)*(100000000*m-978268*m).choose (8908493*m)=
+    (100000000*m).choose (978268*m)*((100000000-978268)*m).choose (8908493*m)
   rw [← Nat.sub_mul]
 
 def outputRate (m : ℕ) : ℝ := Real.log (outputSize m : ℝ)/((fixedLength m : ℝ)*Real.log 2)

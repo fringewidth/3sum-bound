@@ -102,7 +102,7 @@ theorem family_fourth_eventually {K : ℕ} (hK : 16<K) (k : ℕ) :
 
 /-- One fixed native block satisfies the exact paired drift guard together
 with the original signed preprocessing and all principal exponent margins. -/
-theorem simultaneous_parameters {K : ℕ} (hK : 10000000000000≤K)
+theorem simultaneous_parameters {K : ℕ} (hK : 100000000000000000000≤K)
     {κ : ℝ} (hκ : 0≤κ) (c d N : ℕ) :
     ∃ t m : ℕ, 0<t ∧ N≤m ∧ GoodBlock K m ∧
       overheadCharge (selectedMoment K) c d m<microAllowance K ∧

@@ -65,11 +65,11 @@ def baseFactor (K k c d m : ℕ) : ℕ :=
     rawThreshold (nativePrime K m) (sourceCap m (nativePrime K m)) k
 
 theorem frequency_factor_upper (m : ℕ) : frequencyFactor m ≤ 2^42*(fixedLength m+1)^6 := by
-  have hD : TernaryPartitionCount.partitionLoss (7930175*m) (978249*m) ≤ (fixedLength m+1)^3 := by
+  have hD : TernaryPartitionCount.partitionLoss (7930225*m) (978268*m) ≤ (fixedLength m+1)^3 := by
     unfold TernaryPartitionCount.partitionLoss fixedLength
-    have h1 : 2*(7930175*m)+1 ≤ 100000000*m+1 := by omega
-    have h2 : 3*(978249*m)+1 ≤ 100000000*m+1 := by omega
-    have h3 : 2*(978249*m)+1 ≤ 100000000*m+1 := by omega
+    have h1 : 2*(7930225*m)+1 ≤ 100000000*m+1 := by omega
+    have h2 : 3*(978268*m)+1 ≤ 100000000*m+1 := by omega
+    have h3 : 2*(978268*m)+1 ≤ 100000000*m+1 := by omega
     simpa only [pow_succ,pow_zero,one_mul] using Nat.mul_le_mul (Nat.mul_le_mul h1 h2) h3
   unfold frequencyFactor
   have h3 : (3 : ℕ)^16 ≤ 2^32 := by norm_num
@@ -197,7 +197,7 @@ theorem small_overhead_eventually {K : ℕ} (hK : 0 < K) (c d : ℕ) :
   (overhead_charge_tendsto (selectedMoment_pos hK) c d).eventually
     (gt_mem_nhds (moment_limit_lt_allowance hK))
 
-theorem common_fixed_block {K : ℕ} (hK : 10000000000000 ≤ K) (c d N : ℕ) :
+theorem common_fixed_block {K : ℕ} (hK : 100000000000000000000 ≤ K) (c d N : ℕ) :
     ∃ m : ℕ, N ≤ m ∧ GoodBlock K m ∧
       overheadCharge (selectedMoment K) c d m < microAllowance K := by
   have hk : 0 < K := by omega
@@ -253,11 +253,11 @@ theorem paired_drift_with_slack {K : ℕ} (hK : 100 ≤ K) :
   field_simp [hp.ne']
   nlinarith
 
-theorem final_margin {K : ℕ} (hK : 10000000000000 ≤ K) :
+theorem final_margin {K : ℕ} (hK : 100000000000000000000 ≤ K) :
     softCertificate+microAllowance K < targetExponent := by
-  have hk : (10000000000000 : ℝ) ≤ K := by exact_mod_cast hK
+  have hk : (100000000000000000000 : ℝ) ≤ K := by exact_mod_cast hK
   have hp : (0 : ℝ) < K := by linarith
-  have hδ : microAllowance K < (1/1000000000000 : ℝ) := by
+  have hδ : microAllowance K < (1/10000000000000000000 : ℝ) := by
     unfold microAllowance
     apply (div_lt_iff₀ (by positivity)).mpr
     nlinarith

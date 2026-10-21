@@ -99,7 +99,7 @@ theorem greedy_covers (maps : List (Weight m p)) (hall : ∀ w, w ∈ maps)
   simpa [pow_two] using h
 
 def frequencyFactor (m : ℕ) : ℕ :=
-  4*3^16*(16*TernaryPartitionCount.partitionLoss (7930175*m) (978249*m))^2
+  4*3^16*(16*TernaryPartitionCount.partitionLoss (7930225*m) (978268*m))^2
 
 theorem polynomial_frequency_scale
     (hup : p^2 ≤ 16*(vertices (fixedLength m) (fixedPi m)).card*
@@ -109,7 +109,7 @@ theorem polynomial_frequency_scale
   have hs := Nat.mul_le_mul_left (4*3^16) (Nat.pow_le_pow_left h 2)
   unfold frequencyFactor
   change 4*p^4*3^16 ≤
-    4*3^16*(16*TernaryPartitionCount.partitionLoss (7930175*m) (978249*m))^2*
+    4*3^16*(16*TernaryPartitionCount.partitionLoss (7930225*m) (978268*m))^2*
       Fintype.card (LocalEdge (fixedLength m) (fixedAlpha m) (fixedPi m))^2
   convert hs using 1 <;> ring
 

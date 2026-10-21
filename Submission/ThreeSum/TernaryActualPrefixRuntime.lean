@@ -323,7 +323,7 @@ theorem volume_bundle_bound {K k b m n j : ℕ}
       rw [Real.rpow_add hn0]
       ring
 
-theorem full_exponent_lt {K m : ℕ} (hK : 10000000000000≤K) (c d : ℕ)
+theorem full_exponent_lt {K m : ℕ} (hK : 100000000000000000000≤K) (c d : ℕ)
     (hgood : GoodBlock K m)
     (hover : overheadCharge (selectedMoment K) c d m<microAllowance K) :
     fullExponent K (selectedMoment K) c d m<TernaryCountFrontendBudget.frontendExponent :=by
@@ -332,9 +332,9 @@ theorem full_exponent_lt {K m : ℕ} (hK : 10000000000000≤K) (c d : ℕ)
     exact max_lt (by norm_num [softCertificate])
       (max_lt hgood.2.1 (max_lt hgood.2.2.1
         (max_lt hgood.2.2.2.1 (max_lt hgood.2.2.2.2.1 hgood.2.2.2.2.2))))
-  have hkr : (10000000000000:ℝ)≤K:=by exact_mod_cast hK
+  have hkr : (100000000000000000000:ℝ)≤K:=by exact_mod_cast hK
   have hkp : (0:ℝ)<K:=by linarith
-  have hmicro : microAllowance K<(1/1000000000000:ℝ):=by
+  have hmicro : microAllowance K<(1/10000000000000000000:ℝ):=by
     unfold microAllowance
     apply (div_lt_iff₀ (by positivity)).mpr
     nlinarith
@@ -502,12 +502,12 @@ theorem wanted_entries_cap {p m F j : ℕ} [Fact p.Prime]
   intro x
   simpa using TernaryGoodOutputCatalog.localBucket_cap maps τ x
 
-def localFactor (m : ℕ) : ℕ :=17+2*TernaryPartitionCount.partitionLoss (7930175*m) (978249*m)
+def localFactor (m : ℕ) : ℕ :=17+2*TernaryPartitionCount.partitionLoss (7930225*m) (978268*m)
 
 theorem local_factor_polynomial (m : ℕ) : localFactor m≤19*(fixedLength m+1)^3 :=by
-  have h1 : 2*(7930175*m)+1≤fixedLength m+1:=by unfold fixedLength; omega
-  have h2 : 3*(978249*m)+1≤fixedLength m+1:=by unfold fixedLength; omega
-  have h3 : 2*(978249*m)+1≤fixedLength m+1:=by unfold fixedLength; omega
+  have h1 : 2*(7930225*m)+1≤fixedLength m+1:=by unfold fixedLength; omega
+  have h2 : 3*(978268*m)+1≤fixedLength m+1:=by unfold fixedLength; omega
+  have h3 : 2*(978268*m)+1≤fixedLength m+1:=by unfold fixedLength; omega
   have hh:=Nat.mul_le_mul (Nat.mul_le_mul h1 h2) h3
   have hpow : 1≤(fixedLength m+1)^3:=Nat.one_le_pow _ _ (by omega)
   unfold localFactor TernaryPartitionCount.partitionLoss
@@ -526,7 +526,7 @@ theorem wanted_native_count {K k b m n j F carries : ℕ}
       (carries:ℝ)*(n:ℝ)*((nativePrime K m:ℝ)/(partitionCap m:ℝ))^j*(nativeFactor K k b m:ℝ)^j :=by
   let P:=nativePrime K m
   let τ:=TernaryCoverCapParameters.rawThreshold P (TernaryCoverCapParameters.sourceCap m P) k
-  let loss:=TernaryPartitionCount.partitionLoss (7930175*m) (978249*m)
+  let loss:=TernaryPartitionCount.partitionLoss (7930225*m) (978268*m)
   have hτ : 0<τ:=TernaryCoverCapParameters.rawThreshold_pos _ _ _
   have hcap:=TernaryGoodOutputCatalog.cap_real_le_native (m:=m) (p:=P) τ hτ
     (nativePrime_base_lower hK m)

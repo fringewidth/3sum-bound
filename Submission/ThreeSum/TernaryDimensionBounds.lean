@@ -7,8 +7,8 @@ noncomputable section
 namespace ThreeSum.TernaryDimensionBounds
 open TernaryJointType TernaryLocalParameters TernaryBank TernaryParameters
 
-def bankCut (m j : ℕ) : ℕ := 20384999*j*m
-def queryDeficit (m j : ℕ) : ℕ := 1344845*j*m+1
+def bankCut (m j : ℕ) : ℕ := 20385197*j*m
+def queryDeficit (m j : ℕ) : ℕ := 1344861*j*m+1
 def bankSize (m j : ℕ) : ℕ := (bank (fixedLength (j*m)) (bankCut m j)).card
 
 theorem bank_pos (N T : ℕ) : 0 < (bank N T).card := by
@@ -34,7 +34,7 @@ theorem rank_eq_counts {N : ℕ} (Q : TritWord N) :
   rfl
 
 theorem output_rank {m j : ℕ} {Q : TritWord (fixedLength (j*m))}
-    (hQ : HasType Q (fixedPi (j*m))) : rank Q = 21729844*j*m := by
+    (hQ : HasType Q (fixedPi (j*m))) : rank Q = 21730058*j*m := by
   rw [rank_eq_counts, hQ 1, hQ 2]
   simp [fixedPi]
   ring

@@ -265,7 +265,7 @@ def numbers {p m F : ℕ} [Fact p.Prime] (maps : Fin F→Weight m p)
     candidateScore := n^2+(2^(fixedPi m 2*K))^j*count*((n*W^j)^2)^K*
       Λ^(2*K)*(((2*K).factorial*(2*R+1)^(2*K))^2)
     prefixHeader := 106+100*(j+m+p+p^j+fixedAlpha m 2+TernaryArenaSourceSetup.alphaRank m+2*R+J+
-      N+20384999*m*j+2*N+F^j+Q+p^j*p+fixedAlpha m 2*j+A+TernaryArenaSourceSetup.alphaRank m*j+
+      N+20385197*m*j+2*N+F^j+Q+p^j*p+fixedAlpha m 2*j+A+TernaryArenaSourceSetup.alphaRank m*j+
       (N+1)*Q+N*Q+2*(TernaryArenaSourceSetup.alphaRank m*j)+(R+1)^j+(p^(2*K))^j*p^(2*K)+
       9^j*n^2*9+
       LightTernaryInitialBudgets.word K b (p^(2*K)) drift scale n J (n*2^J)*

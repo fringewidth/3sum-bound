@@ -20,22 +20,22 @@ set_option maxRecDepth 100000
 set_option maxHeartbeats 0
 set_option exponentiation.threshold 2048
 
-def pi0 : ℝ := (81204903 / 100000000 : ℝ)
-def pi1 : ℝ := (317207 / 2000000 : ℝ)
-def pi2 : ℝ := (2934747 / 100000000 : ℝ)
-def alpha0 : ℝ := (90113327 / 100000000 : ℝ)
-def alpha1 : ℝ := (1113553 / 12500000 : ℝ)
-def alpha2 : ℝ := (978249 / 100000000 : ℝ)
+def pi0 : ℝ := (40602373 / 50000000 : ℝ)
+def pi1 : ℝ := (317209 / 2000000 : ℝ)
+def pi2 : ℝ := (733701 / 25000000 : ℝ)
+def alpha0 : ℝ := (90113239 / 100000000 : ℝ)
+def alpha1 : ℝ := (8908493 / 100000000 : ℝ)
+def alpha2 : ℝ := (978268 / 100000000 : ℝ)
 def three : ℝ := 3
-def y : ℝ := (3632479 / 20000000 : ℝ)
-def bankArg : ℝ := (485844483685441 / 400000000000000 : ℝ)
-def z : ℝ := (7523953 / 100000000 : ℝ)
-def queryArg1 : ℝ := (107523953 / 100000000 : ℝ)
-def queryArg2 : ℝ := (10809005168746209 / 10000000000000000 : ℝ)
-def deficit : ℝ := (268969 / 20000000 : ℝ)
+def y : ℝ := (1816256201 / 10000000000 : ℝ)
+def bankArg : ℝ := (121461348597670952401 / 100000000000000000000 : ℝ)
+def z : ℝ := (752397677 / 10000000000 : ℝ)
+def queryArg1 : ℝ := (10752397677 / 10000000000 : ℝ)
+def queryArg2 : ℝ := (108090079034354996329 / 100000000000000000000 : ℝ)
+def deficit : ℝ := (1344861 / 100000000 : ℝ)
 def mean : ℝ := pi1 + 2 * pi2
-def certificateExponent : ℝ := 1920279457 / 1000000000
-def targetExponent : ℝ := 192027945701 / 100000000000
+def certificateExponent : ℝ := 9601397143994562657/5000000000000000000
+def targetExponent : ℝ := 4800698571997281331/2500000000000000000
 def Hpi : ℝ := (-pi0 * Real.log pi0 - pi1 * Real.log pi1 -
   pi2 * Real.log pi2) / Real.log 2
 def Halpha : ℝ := (-alpha0 * Real.log alpha0 - alpha1 * Real.log alpha1 -
@@ -48,9 +48,9 @@ def queryEntropy : ℝ := (pi1 * Real.log queryArg1 + pi2 * Real.log queryArg2 -
 theorem log_two_pos : 0 < Real.log 2 := Real.log_pos (by norm_num)
 
 private theorem log_two_bounds :
-    (693147180559 / 1000000000000 : ℝ) ≤ Real.log 2 ∧ Real.log 2 ≤ (8664339757 / 12500000000 : ℝ) := by
+    (13862943611198906187 / 20000000000000000000 : ℝ) ≤ Real.log 2 ∧ Real.log 2 ≤ (17328679513998632737 / 25000000000000000000 : ℝ) := by
   have h := Real.sum_range_sub_log_div_le
-    (by norm_num : |((1 / 3 : ℝ) : ℝ)| < 1) 16
+    (by norm_num : |((1 / 3 : ℝ) : ℝ)| < 1) 20
   have hratio : ((1 + (1 / 3 : ℝ)) / (1 - (1 / 3 : ℝ)) : ℝ) = 2 := by
     norm_num []
   rw [hratio] at h
@@ -58,13 +58,13 @@ private theorem log_two_bounds :
   have hh := abs_le.mp h
   constructor <;> linarith [hh.1, hh.2]
 
-private def normalized_pi0 : ℝ := (81204903 / 50000000 : ℝ)
+private def normalized_pi0 : ℝ := (40602373 / 25000000 : ℝ)
 
 private theorem log_normalized_pi0_bounds :
-    (484952621689 / 1000000000000 : ℝ) ≤ Real.log normalized_pi0 ∧ Real.log normalized_pi0 ≤ (48495262169 / 100000000000 : ℝ) := by
+    (6061883603841429449 / 12500000000000000000 : ℝ) ≤ Real.log normalized_pi0 ∧ Real.log normalized_pi0 ≤ (48495068830731435593 / 100000000000000000000 : ℝ) := by
   have h := Real.sum_range_sub_log_div_le
-    (by norm_num : |((31204903 / 131204903 : ℝ) : ℝ)| < 1) 16
-  have hratio : ((1 + (31204903 / 131204903 : ℝ)) / (1 - (31204903 / 131204903 : ℝ)) : ℝ) = normalized_pi0 := by
+    (by norm_num : |((15602373 / 65602373 : ℝ) : ℝ)| < 1) 20
+  have hratio : ((1 + (15602373 / 65602373 : ℝ)) / (1 - (15602373 / 65602373 : ℝ)) : ℝ) = normalized_pi0 := by
     norm_num [normalized_pi0]
   rw [hratio] at h
   norm_num [Finset.sum_range_succ] at h
@@ -72,7 +72,7 @@ private theorem log_normalized_pi0_bounds :
   constructor <;> linarith [hh.1, hh.2]
 
 theorem log_pi0_bounds :
-    (-208194558871 / 1000000000000 : ℝ) ≤ Real.log pi0 ∧ Real.log pi0 ≤ (-208194558869 / 1000000000000 : ℝ) := by
+    (-5204912306315773839 / 25000000000000000000 : ℝ) ≤ Real.log pi0 ∧ Real.log pi0 ≤ (-10409824612631547671 / 50000000000000000000 : ℝ) := by
   have hu := log_normalized_pi0_bounds
   have htwo := log_two_bounds
   have heq : pi0 = normalized_pi0 / (2 : ℝ) ^ 1 := by norm_num [pi0, normalized_pi0]
@@ -81,13 +81,13 @@ theorem log_pi0_bounds :
   norm_num
   constructor <;> linarith [hu.1, hu.2, htwo.1, htwo.2]
 
-private def normalized_pi1 : ℝ := (317207 / 250000 : ℝ)
+private def normalized_pi1 : ℝ := (317209 / 250000 : ℝ)
 
 private theorem log_normalized_pi1_bounds :
-    (952374559 / 4000000000 : ℝ) ≤ Real.log normalized_pi1 ∧ Real.log normalized_pi1 ≤ (238093639751 / 1000000000000 : ℝ) := by
+    (23809994476201117027 / 100000000000000000000 : ℝ) ≤ Real.log normalized_pi1 ∧ Real.log normalized_pi1 ≤ (5952498619050279257 / 25000000000000000000 : ℝ) := by
   have h := Real.sum_range_sub_log_div_le
-    (by norm_num : |((67207 / 567207 : ℝ) : ℝ)| < 1) 16
-  have hratio : ((1 + (67207 / 567207 : ℝ)) / (1 - (67207 / 567207 : ℝ)) : ℝ) = normalized_pi1 := by
+    (by norm_num : |((67209 / 567209 : ℝ) : ℝ)| < 1) 20
+  have hratio : ((1 + (67209 / 567209 : ℝ)) / (1 - (67209 / 567209 : ℝ)) : ℝ) = normalized_pi1 := by
     norm_num [normalized_pi1]
   rw [hratio] at h
   norm_num [Finset.sum_range_succ] at h
@@ -95,7 +95,7 @@ private theorem log_normalized_pi1_bounds :
   constructor <;> linarith [hh.1, hh.2]
 
 theorem log_pi1_bounds :
-    (-184134790193 / 100000000000 : ℝ) ≤ Real.log pi1 ∧ Real.log pi1 ≤ (-920673950963 / 500000000000 : ℝ) := by
+    (-184134159691782475817 / 100000000000000000000 : ℝ) ≤ Real.log pi1 ∧ Real.log pi1 ≤ (-184134159691782475777 / 100000000000000000000 : ℝ) := by
   have hu := log_normalized_pi1_bounds
   have htwo := log_two_bounds
   have heq : pi1 = normalized_pi1 / (2 : ℝ) ^ 3 := by norm_num [pi1, normalized_pi1]
@@ -104,13 +104,13 @@ theorem log_pi1_bounds :
   norm_num
   constructor <;> linarith [hu.1, hu.2, htwo.1, htwo.2]
 
-private def normalized_pi2 : ℝ := (2934747 / 1562500 : ℝ)
+private def normalized_pi2 : ℝ := (733701 / 390625 : ℝ)
 
 private theorem log_normalized_pi2_bounds :
-    (630334145913 / 1000000000000 : ℝ) ≤ Real.log normalized_pi2 ∧ Real.log normalized_pi2 ≤ (315167072957 / 500000000000 : ℝ) := by
+    (31517678409162000219 / 50000000000000000000 : ℝ) ≤ Real.log normalized_pi2 ∧ Real.log normalized_pi2 ≤ (63035356818324000439 / 100000000000000000000 : ℝ) := by
   have h := Real.sum_range_sub_log_div_le
-    (by norm_num : |((1372247 / 4497247 : ℝ) : ℝ)| < 1) 16
-  have hratio : ((1 + (1372247 / 4497247 : ℝ)) / (1 - (1372247 / 4497247 : ℝ)) : ℝ) = normalized_pi2 := by
+    (by norm_num : |((171538 / 562163 : ℝ) : ℝ)| < 1) 20
+  have hratio : ((1 + (171538 / 562163 : ℝ)) / (1 - (171538 / 562163 : ℝ)) : ℝ) = normalized_pi2 := by
     norm_num [normalized_pi2]
   rw [hratio] at h
   norm_num [Finset.sum_range_succ] at h
@@ -118,7 +118,7 @@ private theorem log_normalized_pi2_bounds :
   constructor <;> linarith [hh.1, hh.2]
 
 theorem log_pi2_bounds :
-    (-3528548937447 / 1000000000000 : ℝ) ≤ Real.log pi2 ∧ Real.log pi2 ≤ (-22053430859 / 6250000000 : ℝ) := by
+    (-1411411806070572741 / 400000000000000000 : ℝ) ≤ Real.log pi2 ∧ Real.log pi2 ≤ (-352852951517643185171 / 100000000000000000000 : ℝ) := by
   have hu := log_normalized_pi2_bounds
   have htwo := log_two_bounds
   have heq : pi2 = normalized_pi2 / (2 : ℝ) ^ 6 := by norm_num [pi2, normalized_pi2]
@@ -127,13 +127,13 @@ theorem log_pi2_bounds :
   norm_num
   constructor <;> linarith [hu.1, hu.2, htwo.1, htwo.2]
 
-private def normalized_alpha0 : ℝ := (90113327 / 50000000 : ℝ)
+private def normalized_alpha0 : ℝ := (90113239 / 50000000 : ℝ)
 
 private theorem log_normalized_alpha0_bounds :
-    (589045061677 / 1000000000000 : ℝ) ≤ Real.log normalized_alpha0 ∧ Real.log normalized_alpha0 ≤ (294522530839 / 500000000000 : ℝ) := by
+    (58904408512896013021 / 100000000000000000000 : ℝ) ≤ Real.log normalized_alpha0 ∧ Real.log normalized_alpha0 ≤ (29452204256448006511 / 50000000000000000000 : ℝ) := by
   have h := Real.sum_range_sub_log_div_le
-    (by norm_num : |((40113327 / 140113327 : ℝ) : ℝ)| < 1) 16
-  have hratio : ((1 + (40113327 / 140113327 : ℝ)) / (1 - (40113327 / 140113327 : ℝ)) : ℝ) = normalized_alpha0 := by
+    (by norm_num : |((40113239 / 140113239 : ℝ) : ℝ)| < 1) 20
+  have hratio : ((1 + (40113239 / 140113239 : ℝ)) / (1 - (40113239 / 140113239 : ℝ)) : ℝ) = normalized_alpha0 := by
     norm_num [normalized_alpha0]
   rw [hratio] at h
   norm_num [Finset.sum_range_succ] at h
@@ -141,7 +141,7 @@ private theorem log_normalized_alpha0_bounds :
   constructor <;> linarith [hh.1, hh.2]
 
 theorem log_alpha0_bounds :
-    (-104102118883 / 1000000000000 : ℝ) ≤ Real.log alpha0 ∧ Real.log alpha0 ≤ (-104102118881 / 1000000000000 : ℝ) := by
+    (-10410309543098517927 / 100000000000000000000 : ℝ) ≤ Real.log alpha0 ∧ Real.log alpha0 ≤ (-10410309543098517913 / 100000000000000000000 : ℝ) := by
   have hu := log_normalized_alpha0_bounds
   have htwo := log_two_bounds
   have heq : alpha0 = normalized_alpha0 / (2 : ℝ) ^ 1 := by norm_num [alpha0, normalized_alpha0]
@@ -150,13 +150,13 @@ theorem log_alpha0_bounds :
   norm_num
   constructor <;> linarith [hu.1, hu.2, htwo.1, htwo.2]
 
-private def normalized_alpha1 : ℝ := (1113553 / 781250 : ℝ)
+private def normalized_alpha1 : ℝ := (8908493 / 6250000 : ℝ)
 
 private theorem log_normalized_alpha1_bounds :
-    (354415882179 / 1000000000000 : ℝ) ≤ Real.log normalized_alpha1 ∧ Real.log normalized_alpha1 ≤ (17720794109 / 50000000000 : ℝ) := by
+    (35442362762686581427 / 100000000000000000000 : ℝ) ≤ Real.log normalized_alpha1 ∧ Real.log normalized_alpha1 ≤ (8860590690671645357 / 25000000000000000000 : ℝ) := by
   have h := Real.sum_range_sub_log_div_le
-    (by norm_num : |((332303 / 1894803 : ℝ) : ℝ)| < 1) 16
-  have hratio : ((1 + (332303 / 1894803 : ℝ)) / (1 - (332303 / 1894803 : ℝ)) : ℝ) = normalized_alpha1 := by
+    (by norm_num : |((2658493 / 15158493 : ℝ) : ℝ)| < 1) 20
+  have hratio : ((1 + (2658493 / 15158493 : ℝ)) / (1 - (2658493 / 15158493 : ℝ)) : ℝ) = normalized_alpha1 := by
     norm_num [normalized_alpha1]
   rw [hratio] at h
   norm_num [Finset.sum_range_succ] at h
@@ -164,7 +164,7 @@ private theorem log_normalized_alpha1_bounds :
   constructor <;> linarith [hh.1, hh.2]
 
 theorem log_alpha1_bounds :
-    (-2418172840061 / 1000000000000 : ℝ) ≤ Real.log alpha1 ∧ Real.log alpha1 ≤ (-302271605007 / 125000000000 : ℝ) := by
+    (-48363301892258308473 / 20000000000000000000 : ℝ) ≤ Real.log alpha1 ∧ Real.log alpha1 ≤ (-30227063682661442789 / 12500000000000000000 : ℝ) := by
   have hu := log_normalized_alpha1_bounds
   have htwo := log_two_bounds
   have heq : alpha1 = normalized_alpha1 / (2 : ℝ) ^ 4 := by norm_num [alpha1, normalized_alpha1]
@@ -173,13 +173,13 @@ theorem log_alpha1_bounds :
   norm_num
   constructor <;> linarith [hu.1, hu.2, htwo.1, htwo.2]
 
-private def normalized_alpha2 : ℝ := (978249 / 781250 : ℝ)
+private def normalized_alpha2 : ℝ := (489134 / 390625 : ℝ)
 
 private theorem log_normalized_alpha2_bounds :
-    (44973807561 / 200000000000 : ℝ) ≤ Real.log normalized_alpha2 ∧ Real.log normalized_alpha2 ≤ (112434518903 / 500000000000 : ℝ) := by
+    (17569410943365283 / 78125000000000000 : ℝ) ≤ Real.log normalized_alpha2 ∧ Real.log normalized_alpha2 ≤ (22488846007507562241 / 100000000000000000000 : ℝ) := by
   have h := Real.sum_range_sub_log_div_le
-    (by norm_num : |((196999 / 1759499 : ℝ) : ℝ)| < 1) 16
-  have hratio : ((1 + (196999 / 1759499 : ℝ)) / (1 - (196999 / 1759499 : ℝ)) : ℝ) = normalized_alpha2 := by
+    (by norm_num : |((98509 / 879759 : ℝ) : ℝ)| < 1) 20
+  have hratio : ((1 + (98509 / 879759 : ℝ)) / (1 - (98509 / 879759 : ℝ)) : ℝ) = normalized_alpha2 := by
     norm_num [normalized_alpha2]
   rw [hratio] at h
   norm_num [Finset.sum_range_succ] at h
@@ -187,7 +187,7 @@ private theorem log_normalized_alpha2_bounds :
   constructor <;> linarith [hh.1, hh.2]
 
 theorem log_alpha2_bounds :
-    (-925432245223 / 200000000000 : ℝ) ≤ Real.log alpha2 ∧ Real.log alpha2 ≤ (-4627161226107 / 1000000000000 : ℝ) := by
+    (-115678545096113538599 / 25000000000000000000 : ℝ) ≤ Real.log alpha2 ∧ Real.log alpha2 ≤ (-7229909068507096161 / 1562500000000000000 : ℝ) := by
   have hu := log_normalized_alpha2_bounds
   have htwo := log_two_bounds
   have heq : alpha2 = normalized_alpha2 / (2 : ℝ) ^ 7 := by norm_num [alpha2, normalized_alpha2]
@@ -199,9 +199,9 @@ theorem log_alpha2_bounds :
 private def normalized_three : ℝ := (3 / 2 : ℝ)
 
 private theorem log_normalized_three_bounds :
-    (101366277027 / 250000000000 : ℝ) ≤ Real.log normalized_three ∧ Real.log normalized_three ≤ (405465108109 / 1000000000000 : ℝ) := by
+    (40546510810816438197 / 100000000000000000000 : ℝ) ≤ Real.log normalized_three ∧ Real.log normalized_three ≤ (20273255405408219099 / 50000000000000000000 : ℝ) := by
   have h := Real.sum_range_sub_log_div_le
-    (by norm_num : |((1 / 5 : ℝ) : ℝ)| < 1) 16
+    (by norm_num : |((1 / 5 : ℝ) : ℝ)| < 1) 20
   have hratio : ((1 + (1 / 5 : ℝ)) / (1 - (1 / 5 : ℝ)) : ℝ) = normalized_three := by
     norm_num [normalized_three]
   rw [hratio] at h
@@ -210,7 +210,7 @@ private theorem log_normalized_three_bounds :
   constructor <;> linarith [hh.1, hh.2]
 
 theorem log_three_bounds :
-    (1098612288667 / 1000000000000 : ℝ) ≤ Real.log three ∧ Real.log three ≤ (1098612288669 / 1000000000000 : ℝ) := by
+    (27465307216702742283 / 25000000000000000000 : ℝ) ≤ Real.log three ∧ Real.log three ≤ (54930614433405484573 / 50000000000000000000 : ℝ) := by
   have hu := log_normalized_three_bounds
   have htwo := log_two_bounds
   have heq : three = normalized_three * (2 : ℝ) ^ 1 := by norm_num [three, normalized_three]
@@ -219,13 +219,13 @@ theorem log_three_bounds :
   norm_num
   constructor <;> linarith [hu.1, hu.2, htwo.1, htwo.2]
 
-private def normalized_y : ℝ := (3632479 / 2500000 : ℝ)
+private def normalized_y : ℝ := (1816256201 / 1250000000 : ℝ)
 
 private theorem log_normalized_y_bounds :
-    (93406150857 / 250000000000 : ℝ) ≤ Real.log normalized_y ∧ Real.log normalized_y ≤ (373624603429 / 1000000000000 : ℝ) := by
+    (37363379875988122211 / 100000000000000000000 : ℝ) ≤ Real.log normalized_y ∧ Real.log normalized_y ≤ (9340844968997030553 / 25000000000000000000 : ℝ) := by
   have h := Real.sum_range_sub_log_div_le
-    (by norm_num : |((1132479 / 6132479 : ℝ) : ℝ)| < 1) 16
-  have hratio : ((1 + (1132479 / 6132479 : ℝ)) / (1 - (1132479 / 6132479 : ℝ)) : ℝ) = normalized_y := by
+    (by norm_num : |((566256201 / 3066256201 : ℝ) : ℝ)| < 1) 20
+  have hratio : ((1 + (566256201 / 3066256201 : ℝ)) / (1 - (566256201 / 3066256201 : ℝ)) : ℝ) = normalized_y := by
     norm_num [normalized_y]
   rw [hratio] at h
   norm_num [Finset.sum_range_succ] at h
@@ -233,7 +233,7 @@ private theorem log_normalized_y_bounds :
   constructor <;> linarith [hh.1, hh.2]
 
 theorem log_y_bounds :
-    (-426454234563 / 250000000000 : ℝ) ≤ Real.log y ∧ Real.log y ≤ (-213227117281 / 125000000000 : ℝ) := by
+    (-170580774291995470633 / 100000000000000000000 : ℝ) ≤ Real.log y ∧ Real.log y ≤ (-170580774291995470593 / 100000000000000000000 : ℝ) := by
   have hu := log_normalized_y_bounds
   have htwo := log_two_bounds
   have heq : y = normalized_y / (2 : ℝ) ^ 3 := by norm_num [y, normalized_y]
@@ -243,23 +243,23 @@ theorem log_y_bounds :
   constructor <;> linarith [hu.1, hu.2, htwo.1, htwo.2]
 
 private theorem log_bankArg_bounds :
-    (194424033167 / 1000000000000 : ℝ) ≤ Real.log bankArg ∧ Real.log bankArg ≤ (12151502073 / 62500000000 : ℝ) := by
+    (1215161922777427739 / 6250000000000000000 : ℝ) ≤ Real.log bankArg ∧ Real.log bankArg ≤ (777703630577553753 / 4000000000000000000 : ℝ) := by
   have h := Real.sum_range_sub_log_div_le
-    (by norm_num : |((85844483685441 / 885844483685441 : ℝ) : ℝ)| < 1) 16
-  have hratio : ((1 + (85844483685441 / 885844483685441 : ℝ)) / (1 - (85844483685441 / 885844483685441 : ℝ)) : ℝ) = bankArg := by
+    (by norm_num : |((21461348597670952401 / 221461348597670952401 : ℝ) : ℝ)| < 1) 20
+  have hratio : ((1 + (21461348597670952401 / 221461348597670952401 : ℝ)) / (1 - (21461348597670952401 / 221461348597670952401 : ℝ)) : ℝ) = bankArg := by
     norm_num [bankArg]
   rw [hratio] at h
   norm_num [Finset.sum_range_succ] at h
   have hh := abs_le.mp h
   constructor <;> linarith [hh.1, hh.2]
 
-private def normalized_z : ℝ := (7523953 / 6250000 : ℝ)
+private def normalized_z : ℝ := (752397677 / 625000000 : ℝ)
 
 private theorem log_normalized_z_bounds :
-    (185510200993 / 1000000000000 : ℝ) ≤ Real.log normalized_z ∧ Real.log normalized_z ≤ (92755100497 / 500000000000 : ℝ) := by
+    (18551336023222543863 / 100000000000000000000 : ℝ) ≤ Real.log normalized_z ∧ Real.log normalized_z ≤ (2318917002902817983 / 12500000000000000000 : ℝ) := by
   have h := Real.sum_range_sub_log_div_le
-    (by norm_num : |((1273953 / 13773953 : ℝ) : ℝ)| < 1) 16
-  have hratio : ((1 + (1273953 / 13773953 : ℝ)) / (1 - (1273953 / 13773953 : ℝ)) : ℝ) = normalized_z := by
+    (by norm_num : |((127397677 / 1377397677 : ℝ) : ℝ)| < 1) 20
+  have hratio : ((1 + (127397677 / 1377397677 : ℝ)) / (1 - (127397677 / 1377397677 : ℝ)) : ℝ) = normalized_z := by
     norm_num [normalized_z]
   rw [hratio] at h
   norm_num [Finset.sum_range_succ] at h
@@ -267,7 +267,7 @@ private theorem log_normalized_z_bounds :
   constructor <;> linarith [hh.1, hh.2]
 
 theorem log_z_bounds :
-    (-2587078521247 / 1000000000000 : ℝ) ≤ Real.log z ∧ Real.log z ≤ (-1293539260621 / 500000000000 : ℝ) := by
+    (-258707536200755579929 / 100000000000000000000 : ℝ) ≤ Real.log z ∧ Real.log z ≤ (-64676884050188894969 / 25000000000000000000 : ℝ) := by
   have hu := log_normalized_z_bounds
   have htwo := log_two_bounds
   have heq : z = normalized_z / (2 : ℝ) ^ 4 := by norm_num [z, normalized_z]
@@ -277,10 +277,10 @@ theorem log_z_bounds :
   constructor <;> linarith [hu.1, hu.2, htwo.1, htwo.2]
 
 private theorem log_queryArg1_bounds :
-    (72543455363 / 1000000000000 : ℝ) ≤ Real.log queryArg1 ∧ Real.log queryArg1 ≤ (18135863841 / 250000000000 : ℝ) := by
+    (58034941144716541 / 800000000000000000 : ℝ) ≤ Real.log queryArg1 ∧ Real.log queryArg1 ≤ (3627183821544783813 / 50000000000000000000 : ℝ) := by
   have h := Real.sum_range_sub_log_div_le
-    (by norm_num : |((7523953 / 207523953 : ℝ) : ℝ)| < 1) 16
-  have hratio : ((1 + (7523953 / 207523953 : ℝ)) / (1 - (7523953 / 207523953 : ℝ)) : ℝ) = queryArg1 := by
+    (by norm_num : |((752397677 / 20752397677 : ℝ) : ℝ)| < 1) 20
+  have hratio : ((1 + (752397677 / 20752397677 : ℝ)) / (1 - (752397677 / 20752397677 : ℝ)) : ℝ) = queryArg1 := by
     norm_num [queryArg1]
   rw [hratio] at h
   norm_num [Finset.sum_range_succ] at h
@@ -288,17 +288,17 @@ private theorem log_queryArg1_bounds :
   constructor <;> linarith [hh.1, hh.2]
 
 private theorem log_queryArg2_bounds :
-    (77794505629 / 1000000000000 : ℝ) ≤ Real.log queryArg2 ∧ Real.log queryArg2 ≤ (7779450563 / 100000000000 : ℝ) := by
+    (7779475863001095251 / 100000000000000000000 : ℝ) ≤ Real.log queryArg2 ∧ Real.log queryArg2 ≤ (1944868965750273813 / 25000000000000000000 : ℝ) := by
   have h := Real.sum_range_sub_log_div_le
-    (by norm_num : |((809005168746209 / 20809005168746209 : ℝ) : ℝ)| < 1) 16
-  have hratio : ((1 + (809005168746209 / 20809005168746209 : ℝ)) / (1 - (809005168746209 / 20809005168746209 : ℝ)) : ℝ) = queryArg2 := by
+    (by norm_num : |((8090079034354996329 / 208090079034354996329 : ℝ) : ℝ)| < 1) 20
+  have hratio : ((1 + (8090079034354996329 / 208090079034354996329 : ℝ)) / (1 - (8090079034354996329 / 208090079034354996329 : ℝ)) : ℝ) = queryArg2 := by
     norm_num [queryArg2]
   rw [hratio] at h
   norm_num [Finset.sum_range_succ] at h
   have hh := abs_le.mp h
   constructor <;> linarith [hh.1, hh.2]
 
-theorem Hpi_bounds : (16292712759 / 20000000000 : ℝ) ≤ Hpi ∧ Hpi ≤ (20365890949 / 25000000000 : ℝ) := by
+theorem Hpi_bounds : (1629281449055122917 / 2000000000000000000 : ℝ) ≤ Hpi ∧ Hpi ≤ (814640724527561459 / 1000000000000000000 : ℝ) := by
   have h_pi0 := log_pi0_bounds
   have h_pi1 := log_pi1_bounds
   have h_pi2 := log_pi2_bounds
@@ -313,7 +313,7 @@ theorem Hpi_bounds : (16292712759 / 20000000000 : ℝ) ≤ Hpi ∧ Hpi ≤ (2036
     norm_num [Hpi, mean, deficit, pi0, pi1, pi2, alpha0, alpha1, alpha2] at *
     linarith [h_pi0.1, h_pi0.2, h_pi1.1, h_pi1.2, h_pi2.1, h_pi2.2, h_two.1, h_two.2]
 
-theorem Halpha_bounds : (51142981001 / 100000000000 : ℝ) ≤ Halpha ∧ Halpha ≤ (51142981003 / 100000000000 : ℝ) := by
+theorem Halpha_bounds : (5114333534032641009 / 10000000000000000000 : ℝ) ≤ Halpha ∧ Halpha ≤ (2557166767016320507 / 5000000000000000000 : ℝ) := by
   have h_alpha0 := log_alpha0_bounds
   have h_alpha1 := log_alpha1_bounds
   have h_alpha2 := log_alpha2_bounds
@@ -328,7 +328,7 @@ theorem Halpha_bounds : (51142981001 / 100000000000 : ℝ) ≤ Halpha ∧ Halpha
     norm_num [Halpha, mean, deficit, pi0, pi1, pi2, alpha0, alpha1, alpha2] at *
     linarith [h_alpha0.1, h_alpha0.2, h_alpha1.1, h_alpha1.2, h_alpha2.1, h_alpha2.2, h_two.1, h_two.2]
 
-theorem partitionEntropy_bounds : (2563976743 / 12500000000 : ℝ) ≤ partitionEntropy ∧ partitionEntropy ≤ (4102362789 / 20000000000 : ℝ) := by
+theorem partitionEntropy_bounds : (512800107174161301 / 2500000000000000000 : ℝ) ≤ partitionEntropy ∧ partitionEntropy ≤ (410240085739329041 / 2000000000000000000 : ℝ) := by
   have h_three := log_three_bounds
   have h_two := log_two_bounds
   constructor
@@ -341,7 +341,7 @@ theorem partitionEntropy_bounds : (2563976743 / 12500000000 : ℝ) ≤ partition
     norm_num [partitionEntropy, mean, deficit, pi0, pi1, pi2, alpha0, alpha1, alpha2] at *
     linarith [h_three.1, h_three.2, h_two.1, h_two.2]
 
-theorem bankEntropy_bounds : (39108201993 / 50000000000 : ℝ) ≤ bankEntropy ∧ bankEntropy ≤ (19554100997 / 25000000000 : ℝ) := by
+theorem bankEntropy_bounds : (24442778518278711 / 31250000000000000 : ℝ) ≤ bankEntropy ∧ bankEntropy ≤ (1955422281462296881 / 2500000000000000000 : ℝ) := by
   have h_bankArg := log_bankArg_bounds
   have h_y := log_y_bounds
   have h_two := log_two_bounds
@@ -355,7 +355,7 @@ theorem bankEntropy_bounds : (39108201993 / 50000000000 : ℝ) ≤ bankEntropy �
     norm_num [bankEntropy, mean, deficit, pi0, pi1, pi2, alpha0, alpha1, alpha2] at *
     linarith [h_bankArg.1, h_bankArg.2, h_y.1, h_y.2, h_two.1, h_two.2]
 
-theorem queryEntropy_bounds : (438046523 / 6250000000 : ℝ) ≤ queryEntropy ∧ queryEntropy ≤ (7008744369 / 100000000000 : ℝ) := by
+theorem queryEntropy_bounds : (700882094933297871 / 10000000000000000000 : ℝ) ≤ queryEntropy ∧ queryEntropy ≤ (43805130933331117 / 625000000000000000 : ℝ) := by
   have h_queryArg1 := log_queryArg1_bounds
   have h_queryArg2 := log_queryArg2_bounds
   have h_z := log_z_bounds
@@ -382,7 +382,7 @@ theorem alpha_formulas :
     alpha0 = pi0 + pi1 / 2 + pi2 / 3 ∧
     alpha1 = pi1 / 2 + pi2 / 3 ∧ alpha2 = pi2 / 3 := by
   norm_num [alpha0, alpha1, alpha2, pi0, pi1, pi2]
-theorem deficit_room : mean / 2 - deficit = (9520077 / 100000000 : ℝ) := by
+theorem deficit_room : mean / 2 - deficit = (1190021 / 12500000 : ℝ) := by
   norm_num [mean, pi1, pi2, deficit]
 theorem deficit_positive : 0 < deficit := by norm_num [deficit]
 theorem endpoint_below_cut : mean / 2 < mean - deficit := by
@@ -415,14 +415,14 @@ theorem projection_fiber_entropy_lt_half_Hpi :
 
 /-- Exact finite bound on the mixed projection fiber in the integer schedule. -/
 theorem projection_fiber_log_choose_bound {m : ℕ} (hm : 0 < m) :
-    Real.log (((100000000 * m).choose (978249 * m) : ℕ) : ℝ) <
+    Real.log (((100000000 * m).choose (978268 * m) : ℕ) : ℝ) <
       (100000000 * m : ℕ) * Real.log 2 / 4 := by
   have hm0 : (m : ℝ) ≠ 0 := by exact_mod_cast (Nat.ne_of_gt hm)
   have hL : (0 : ℝ) < (100000000 * m : ℕ) := by
     exact_mod_cast (Nat.mul_pos (by decide : 0 < 100000000) hm)
-  have hk : 978249 * m ≤ 100000000 * m :=
-    Nat.mul_le_mul_right m (by decide : 978249 ≤ 100000000)
-  have hr : ((978249 * m : ℕ) : ℝ) / (100000000 * m : ℕ) = alpha2 := by
+  have hk : 978268 * m ≤ 100000000 * m :=
+    Nat.mul_le_mul_right m (by decide : 978268 ≤ 100000000)
+  have hr : ((978268 * m : ℕ) : ℝ) / (100000000 * m : ℕ) = alpha2 := by
     push_cast
     unfold alpha2
     field_simp
@@ -430,25 +430,25 @@ theorem projection_fiber_log_choose_bound {m : ℕ} (hm : 0 < m) :
   rw [hr] at hb
   have he := (div_lt_iff₀ log_two_pos).mp projection_fiber_entropy_bound
   calc
-    Real.log (((100000000 * m).choose (978249 * m) : ℕ) : ℝ)
+    Real.log (((100000000 * m).choose (978268 * m) : ℕ) : ℝ)
       ≤ (100000000 * m : ℕ) * Real.binEntropy alpha2 := hb
     _ < (100000000 * m : ℕ) * ((1 / 4 : ℝ) * Real.log 2) :=
       mul_lt_mul_of_pos_left he hL
     _ = (100000000 * m : ℕ) * Real.log 2 / 4 := by ring
 
 theorem projection_fiber_bits_lt_quarter {m : ℕ} (hm : 0 < m) :
-    Real.log (((100000000 * m).choose (978249 * m) : ℕ) : ℝ) /
+    Real.log (((100000000 * m).choose (978268 * m) : ℕ) : ℝ) /
       ((100000000 * m : ℕ) * Real.log 2) < (1 / 4 : ℝ) := by
   have hL : (0 : ℝ) < (100000000 * m : ℕ) := by
     exact_mod_cast (Nat.mul_pos (by decide : 0 < 100000000) hm)
   apply (div_lt_iff₀ (mul_pos hL log_two_pos)).mpr
   calc
-    Real.log (((100000000 * m).choose (978249 * m) : ℕ) : ℝ)
+    Real.log (((100000000 * m).choose (978268 * m) : ℕ) : ℝ)
       < (100000000 * m : ℕ) * Real.log 2 / 4 := projection_fiber_log_choose_bound hm
     _ = (1 / 4 : ℝ) * ((100000000 * m : ℕ) * Real.log 2) := by ring
 
 theorem projection_fiber_bits_lt_half_Hpi {m : ℕ} (hm : 0 < m) :
-    Real.log (((100000000 * m).choose (978249 * m) : ℕ) : ℝ) /
+    Real.log (((100000000 * m).choose (978268 * m) : ℕ) : ℝ) /
       ((100000000 * m : ℕ) * Real.log 2) < Hpi / 2 := by
   linarith [projection_fiber_bits_lt_quarter hm, Hpi_bounds.1]
 
@@ -507,7 +507,7 @@ theorem all_costs_lt_certificate : ∀ t ∈ costLedger, t < certificateExponent
   · exact h5
   · norm_num [certificateExponent]
 
-theorem certificate_margin : targetExponent - certificateExponent = (1 / 100000000000 : ℝ) := by
+theorem certificate_margin : targetExponent - certificateExponent = (1 / 1000000000000000000 : ℝ) := by
   norm_num [targetExponent, certificateExponent]
 theorem certificate_lt_target : certificateExponent < targetExponent := by
   norm_num [targetExponent, certificateExponent]

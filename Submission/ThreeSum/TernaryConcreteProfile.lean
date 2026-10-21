@@ -20,7 +20,7 @@ structure Profile (κ : ℕ) where
   t : ℕ
   m : ℕ
   cutoff : ℕ
-  large : 10000000000000≤K
+  large : 100000000000000000000≤K
   basePositive : 0<t
   blockPositive : 0<m
   good : GoodBlock K m
@@ -35,9 +35,9 @@ structure Profile (κ : ℕ) where
   inputGuards : ∀n≥cutoff, InputGuards K m (2^t) κ n
 
 theorem exists_profile (κ : ℕ) : Nonempty (Profile κ) := by
-  have hKex : ∃K : ℕ, 10000000000000≤K := ⟨10000000000000,le_rfl⟩
+  have hKex : ∃K : ℕ, 100000000000000000000≤K := ⟨100000000000000000000,le_rfl⟩
   let K := Classical.choose hKex
-  have hK : 10000000000000≤K := Classical.choose_spec hKex
+  have hK : 100000000000000000000≤K := Classical.choose_spec hKex
   obtain ⟨t,m,n0,ht,hm,hg,ho,hc,hd,hp,hdrift,hp9,hcharge,hinputs⟩ :=
     simultaneous_cutoff hK κ 19 3 1
   exact ⟨⟨K,t,m,n0,hK,ht,by omega,hg,ho,hc,hd,hp,hdrift,hp9,hcharge,hinputs⟩⟩

@@ -25,7 +25,7 @@ theorem wanted_factor_bound {K k b m F : ℕ} (hK : 0<K)
     (outputCap K k m F:ℝ)≤(nativeFactor K k b m:ℝ)*((nativePrime K m:ℝ)/(partitionCap m:ℝ)):=by
   let P:=nativePrime K m
   let τ:=threshold K k m
-  let loss:=TernaryPartitionCount.partitionLoss (7930175*m) (978249*m)
+  let loss:=TernaryPartitionCount.partitionLoss (7930225*m) (978268*m)
   have hcap:=TernaryGoodOutputCatalog.cap_real_le_native (m:=m) (p:=P) τ
     (TernaryCoverCapParameters.rawThreshold_pos _ _ _) (nativePrime_base_lower hK m)
   have hbase : 2*loss*F*τ≤nativeFactor K k b m:=by

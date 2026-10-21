@@ -158,9 +158,9 @@ theorem ready {lim : Limits} {d : ℕ} (maps : Fin F→Weight m p) (τ cap : ℕ
     have hFend := (grouped_end (base := S.fbase) (N := n) (nb := nb m r) hg).trans hstageF
     have hGend := (grouped_end (base := S.gbase) (N := n) (nb := nb m r) hg).trans hstageG
     have hHend := (grouped_end (base := S.hbase) (N := n) (nb := nb m r) hg).trans hstageH
-    have ha : alphaRank m=10864922*m := by
+    have ha : alphaRank m=10865029*m := by
       unfold alphaRank fixedAlpha
-      change 8908424*m+2*(978249*m)=10864922*m
+      change 8908493*m+2*(978268*m)=10865029*m
       ring
     have hs : r*alphaRank m≤cut m r := by
       rw [ha]

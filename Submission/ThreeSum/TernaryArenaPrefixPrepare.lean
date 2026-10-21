@@ -123,7 +123,7 @@ theorem ready {lim : Limits} {p m F j J n U0 a b scale depth : ℕ}
     midWord:=hwordIndex 29 (by decide)
     nineWord:=hwordIndex 30 (by decide) }
   · change LightTernaryPrefixSetup.T m (j+1)+1≤2*(alphaRank m*(j+1))
-    change 20384999*((j+1)*m)+1≤2*((8908424*m+2*(978249*m))*(j+1))
+    change 20385197*((j+1)*m)+1≤2*((8908493*m+2*(978268*m))*(j+1))
     have hpos : 1≤(j+1)*m:=by nlinarith
     nlinarith
   · change (LightTernaryPrefixSetup.N X.m (X.j+1):ℤ)+1≤lim.word

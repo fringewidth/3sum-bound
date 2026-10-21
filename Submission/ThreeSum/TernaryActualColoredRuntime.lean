@@ -17,7 +17,7 @@ set_option maxHeartbeats 10000000
 set_option maxRecDepth 24000
 attribute [local instance] Classical.propDecidable
 
-def exponent : ℝ :=960139728503/500000000000
+def exponent : ℝ :=480069857199728133/250000000000000000
 def J (m β κ n : ℕ) :=TernarySignedPadding.paddedLength β (n^κ) (radixLength m n)
 
 /-- This function is independent of every source value, color, field
@@ -412,11 +412,11 @@ theorem PB {K k c d m F D E κ B H β : ℕ} {δ : ℝ}
     ((PowerBound.const (LightTernaryInitialBudgets.time K)).mono_exponent hzero)).add_same
       (he.mono_exponent hroom)).add_same ((PowerBound.const 10000).mono_exponent hzero)
 
-theorem selected_room {K : ℕ} (hK : 10000000000000≤K) :
+theorem selected_room {K : ℕ} (hK : 100000000000000000000≤K) :
     TernaryCountFrontendBudget.frontendExponent+microAllowance K<exponent:=by
-  have hk : (10000000000000:ℝ)≤K:=by exact_mod_cast hK
+  have hk : (100000000000000000000:ℝ)≤K:=by exact_mod_cast hK
   have hp : (0:ℝ)<K:=by linarith
-  have hμ : microAllowance K<(1/1000000000000:ℝ):=by
+  have hμ : microAllowance K<(1/10000000000000000000:ℝ):=by
     unfold microAllowance
     apply (div_lt_iff₀ (by positivity)).mpr
     nlinarith

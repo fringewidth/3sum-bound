@@ -118,12 +118,12 @@ theorem capExponent_mul_upper (m k : ℕ) :
 theorem schedule_upper (m : ℕ) :
     frequencyFactor m*(Nat.log2 (prime m^2)+1) ≤ 2^234*(m+1)^7 := by
   have hL : fixedLength m+1 ≤ 2^27*(m+1) := by simp [fixedLength]; norm_num; omega
-  have hD : TernaryPartitionCount.partitionLoss (7930175*m) (978249*m) ≤
+  have hD : TernaryPartitionCount.partitionLoss (7930225*m) (978268*m) ≤
       (fixedLength m+1)^3 := by
     unfold TernaryPartitionCount.partitionLoss fixedLength
-    have h1 : 2*(7930175*m)+1 ≤ 100000000*m+1 := by omega
-    have h2 : 3*(978249*m)+1 ≤ 100000000*m+1 := by omega
-    have h3 : 2*(978249*m)+1 ≤ 100000000*m+1 := by omega
+    have h1 : 2*(7930225*m)+1 ≤ 100000000*m+1 := by omega
+    have h2 : 3*(978268*m)+1 ≤ 100000000*m+1 := by omega
+    have h3 : 2*(978268*m)+1 ≤ 100000000*m+1 := by omega
     simpa only [pow_succ, pow_zero, one_mul] using Nat.mul_le_mul (Nat.mul_le_mul h1 h2) h3
   have hF : frequencyFactor m ≤ 2^42*(fixedLength m+1)^6 := by
     have h3 : (3 : ℕ)^16 ≤ 2^32 := by norm_num

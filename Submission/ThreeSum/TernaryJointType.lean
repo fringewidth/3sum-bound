@@ -193,17 +193,17 @@ theorem fieldWord_sum {L p : ℕ} {a b q : TritWord L}
 
 namespace CertifiedParameters
 
-def pi0 : ℚ := 81204903 / 100000000
-def pi1 : ℚ := 15860350 / 100000000
-def pi2 : ℚ := 2934747 / 100000000
+def pi0 : ℚ := 81204746 / 100000000
+def pi1 : ℚ := 15860450 / 100000000
+def pi2 : ℚ := 2934804 / 100000000
 
-def alpha0 : ℚ := 90113327 / 100000000
-def alpha1 : ℚ := 8908424 / 100000000
-def alpha2 : ℚ := 978249 / 100000000
+def alpha0 : ℚ := 90113239 / 100000000
+def alpha1 : ℚ := 8908493 / 100000000
+def alpha2 : ℚ := 978268 / 100000000
 
-def deficit : ℚ := 268969 / 20000000
-def bankY : ℚ := 3632479 / 20000000
-def queryZ : ℚ := 7523953 / 100000000
+def deficit : ℚ := 1344861 / 100000000
+def bankY : ℚ := 1816256201 / 10000000000
+def queryZ : ℚ := 752397677 / 10000000000
 def target192028 : ℚ := 48007 / 25000
 def target1921 : ℚ := 19203 / 10000
 
